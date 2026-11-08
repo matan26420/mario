@@ -256,7 +256,8 @@
     <!-- כפתורי תקשורת וחתימה גדולה וברורה -->
     <div class="social-links">
         <div class="social-btns-row">
-            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
+            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 0528809482
+        </a>
             <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
             <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
         </div>
