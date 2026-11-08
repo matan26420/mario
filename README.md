@@ -64,11 +64,11 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* הלוגו מוגדל ללא מסגרת כחולה */
+        /* הלוגו מרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
-            height: 240px;
-            border-radius: 50%;
+            height: 260px;
+            border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
@@ -220,11 +220,17 @@
             color: #444;
             margin-bottom: 5px;
         }
-        .review-image {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 6px;
+        .review-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
             margin-top: 10px;
+        }
+        .review-image {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
             display: block;
         }
         
@@ -246,7 +252,7 @@
             <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
         </div>
 
-        <!-- הלוגו מוגדל ללא מסגרת כחולה -->
+        <!-- הלוגו מרובע, מוגדל וללא מסגרת כחולה -->
         <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
@@ -256,8 +262,7 @@
     <!-- כפתורי תקשורת וחתימה גדולה וברורה -->
     <div class="social-links">
         <div class="social-btns-row">
-            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 0528809482
-        </a>
+            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
             <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
             <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
         </div>
@@ -265,7 +270,26 @@
             <span class="signature-label">חתימת העסק:</span>
             <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
         </div>
-  >
+    </div>
+
+    <h2>בחרו שירות</h2>
+    <div class="services-grid">
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20אינסטלציה.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚰 אינסטלציה</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20צבע.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🎨 צבע</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בחידוש%20רהיטים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ חידוש רהיטים</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧹 ניקיון</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהריסות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧱 הריסות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בשיפוצים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📐 שיפוצים</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20גבס.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🪚 עבודות גבס</a>
+    </div>
+
+    <h2>🚚 הובלות</h2>
+    <div class="moves-grid">
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20גדולות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚛 הובלות גדולות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20קטנות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📦 הובלות קטנות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלת%20רהיט%20אחד.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ הובלת רהיט אחד</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20משרדים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🏢 הובלות משרדים</a>
+    </div>
 
     <!-- אזור תגובות -->
     <div class="reviews-section">
@@ -320,8 +344,8 @@
             </div>
 
             <div class="form-group">
-                <label for="reviewImage">צרף תמונה להוכחת העבודה (אופציונלי):</label>
-                <input type="file" id="reviewImage" accept="image/*">
+                <label for="reviewImages">צרף תמונות להוכחת העבודה (עד 10 תמונות):</label>
+                <input type="file" id="reviewImages" accept="image/*" multiple>
             </div>
 
             <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
@@ -356,7 +380,7 @@
 </div>
 
 <script>
-    const IMGBB_API_KEY = "5ee34ed3831b8891e8b5f0d06ecba391";
+    const IMGBB_API_KEY = "7b4b0bd1f4a6019c1bb0172dd143e46d";
 
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
@@ -428,7 +452,12 @@
             let card = document.createElement('div');
             card.className = 'review-card';
             
-            let imageHTML = review.imageUrl ? `<img src="${review.imageUrl}" alt="תמונת עבודה" class="review-image">` : '';
+            let imagesHTML = '';
+            if (review.imageUrls && review.imageUrls.length > 0) {
+                imagesHTML = `<div class="review-images-grid">` + 
+                    review.imageUrls.map(url => `<img src="${url}" alt="תמונת עבודה" class="review-image">`).join('') + 
+                    `</div>`;
+            }
 
             card.innerHTML = `
                 <div class="review-header">
@@ -436,7 +465,7 @@
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
                 <p style="margin: 8px 0; color: #333; word-break: break-word;">${escapeHTML(review.text)}</p>
-                ${imageHTML}
+                ${imagesHTML}
                 <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${escapeHTML(review.date || '')}</div>
             `;
             reviewsList.appendChild(card);
@@ -471,8 +500,8 @@
         let category = document.getElementById('reviewCategory').value;
         let rating = parseFloat(reviewRatingInput.value);
         let text = document.getElementById('reviewText').value.trim();
-        let imageInput = document.getElementById('reviewImage');
-        let imageFile = imageInput.files ? imageInput.files[0] : null;
+        let imageInput = document.getElementById('reviewImages');
+        let imageFiles = imageInput.files ? Array.from(imageInput.files) : [];
         let date = new Date().toLocaleDateString('he-IL');
 
         if (!name || !category || !text || isNaN(rating)) {
@@ -480,33 +509,40 @@
             return;
         }
 
+        if (imageFiles.length > 10) {
+            alert('ניתן להעלות עד 10 תמונות בלבד.');
+            return;
+        }
+
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'מעלה תמונה ושולח... ⏳';
+        submitBtn.innerHTML = 'מעלה תמונות ושולח... ⏳';
 
-        let imageUrl = '';
+        let imageUrls = [];
 
-        if (imageFile) {
-            try {
-                let formData = new FormData();
-                formData.append('image', imageFile);
+        if (imageFiles.length > 0) {
+            for (let i = 0; i < imageFiles.length; i++) {
+                try {
+                    let formData = new FormData();
+                    formData.append('image', imageFiles[i]);
 
-                let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                    method: 'POST',
-                    body: formData
-                });
-                let result = await response.json();
-                if (result && result.success) {
-                    imageUrl = result.data.url;
-                } else {
-                    alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
+                    let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json();
+                    
+                    if (result && result.success) {
+                        imageUrls.push(result.data.url);
+                    } else {
+                        console.error('ImgBB Error for image ' + i, result);
+                    }
+                } catch (error) {
+                    console.error('Error uploading image ' + i, error);
                 }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('אירעה שגיאה בחיבור לשרת התמונות.');
             }
         }
 
-        let newReview = { name, category, rating, text, date, imageUrl };
+        let newReview = { name, category, rating, text, date, imageUrls };
         
         try {
             let newRef = reviewsRef.push();
@@ -525,14 +561,20 @@
                                   `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                                   `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
                                   `⭐ *דירוג:* ${rating} כוכבים%0A` +
-                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}` +
-                                  (imageUrl ? `%0A🖼️ *תמונת העבודה:* ${imageUrl}` : '');
+                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}`;
+            
+            if (imageUrls.length > 0) {
+                whatsappMessage += `%0A%0A🖼️ *תמונות העבודה:*`;
+                imageUrls.forEach((url, index) => {
+                    whatsappMessage += `%0A${index + 1}. ${url}`;
+                });
+            }
 
             let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
             window.open(whatsappUrl, '_blank');
         } catch (error) {
             console.error('Error saving review:', error);
-            alert('שגיאה בשמירת התגובה. אנא נסה שוב.');
+            alert('שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.');
             submitBtn.disabled = false;
             submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
         }
@@ -543,4 +585,3 @@
 
 </body>
 </html>
-65d23f576854b9d9eeda0a988f2b748b
