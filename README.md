@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +75,6 @@
             margin-bottom: 30px;
         }
 
-        /* כרטיס הביקור מרובע, מוגדל משמעותית וללא מסגרת כחולה */
         .business-card-section {
             background: #ffffff;
             padding: 10px;
@@ -97,7 +96,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* הלוגו מרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
             height: 260px;
@@ -135,6 +133,28 @@
         .info-box .row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccd; padding: 3px 0; }
         .info-box .row:last-child { border: 0; }
 
+        /* שירות חירום מותאם מראש */
+        .emergency-box {
+            border: 2px solid #dc3545;
+            background: #fff5f5;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: right;
+            line-height: 1.7;
+        }
+        html[dir="ltr"] .emergency-box { text-align: left; }
+        .emergency-box h3 {
+            margin: 0 0 8px;
+            color: #b01e2c;
+            font-size: 18px;
+        }
+        .emergency-tips {
+            margin: 8px 0 14px;
+            padding-inline-start: 20px;
+            color: #444;
+        }
+
         /* שאלות נפוצות */
         .faq details { background: #fff; border: 1px solid #e3e3e3; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; text-align: right; }
         html[dir="ltr"] .faq details { text-align: left; }
@@ -153,7 +173,7 @@
         .social-btns-row {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         .social-btn {
@@ -171,8 +191,10 @@
         .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tiktok-btn { background: #000000; }
         .whatsapp-btn { background: #25d366; }
+        .call-btn { background: #222222; }
+        .emergency-wa-btn { background: #dc3545; }
 
-        /* חתימה מוגדלת וברורה משמעותית */
+        /* חתימה */
         .signature-container {
             display: flex;
             align-items: center;
@@ -212,6 +234,7 @@
             margin-bottom: 15px;
             text-align: right;
         }
+        html[dir="ltr"] .form-group { text-align: left; }
         .form-group label {
             display: block;
             margin-bottom: 5px;
@@ -257,7 +280,6 @@
         .star:active { transform: scale(1.12); }
         .star-hint { font-size: 12px; color: #888; margin-top: 2px; }
 
-        /* כפתורי גוגל ו-144 */
         .other-reviews { background: #f4f8ff; border-radius: 8px; padding: 14px; margin-top: 20px; text-align: center; }
         .other-reviews p { margin: 0 0 10px; font-weight: bold; color: #444; }
         .other-reviews .social-btns-row { gap: 10px; }
@@ -320,25 +342,23 @@
     </div>
 
     <div class="top-brand-bar">
-        <!-- כרטיס ביקור מוגדל ומרובע -->
         <div class="business-card-section">
             <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
         </div>
-
-        <!-- הלוגו מרובע, מוגדל וללא מסגרת כחולה -->
         <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
     <h1>M.R. הכל לבית</h1>
-    <p data-ru="Комплексный, профессиональный и быстрый сервис по всему Израилю">שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
+    <p data-ru="Комплексный, профессиональный и быстрый сервис от Кирьят-Шмоны до Беэр-Шевы">שירות מקיף, מקצועי ומהיר מקרית שמונה ועד באר שבע</p>
     <div class="status" id="status"></div>
 
-    <!-- כפתורי תקשורת וחתימה גדולה וברורה -->
+    <!-- כפתורי תקשורת וחתימה -->
     <div class="social-links">
         <div class="social-btns-row">
-            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
-            <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
-            <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
+            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" target="_blank" rel="noopener" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
+            <a href="tel:+972559423309" class="social-btn call-btn">📞 <span data-ru="Позвонить">התקשר עכשיו</span></a>
+            <a href="https://www.instagram.com/m.r26420" target="_blank" rel="noopener" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
+            <a href="https://www.tiktok.com/@m.r26420" target="_blank" rel="noopener" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
         </div>
         <div class="signature-container">
             <span class="signature-label" data-ru="Подпись компании:">חתימת העסק:</span>
@@ -375,6 +395,41 @@
         <div class="row"><span data-ru="Воскресенье – четверг">ראשון – חמישי</span><b>08:00 – 20:00</b></div>
         <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
         <div class="row"><span data-ru="Суббота">שבת</span><b style="color:#a12727" data-ru="Только экстренные случаи">מקרה חירום בלבד</b></div>
+    </div>
+
+    <!-- שירות חירום מותאם מראש -->
+    <h2 data-ru="🚨 Срочный вызов">🚨 שירות חירום</h2>
+    <div class="emergency-box">
+        <h3 data-ru="Что включает срочный вызов и как подготовиться заранее:">מה כולל שירות חירום ואיך נערכים מראש:</h3>
+        <ul class="emergency-tips" data-ru="<li><b>Когда обращаться:</b> протечка/прорыв воды, короткое замыкание или искрение, срочный ремонт или экстренная перевозка.</li><li><b>Как мы работаем:</b> быстрая оценка ситуации и выезд по возможности, прозрачное согласование условий заранее.</li><li><b>Что отправить сразу:</b> город, этаж/доступ и фото или видео проблемы (если это безопасно).</li>">
+            <li><b>מתי פונים:</b> פיצוץ מים או נזילה פעילה, קצר/תקלת חשמל, מפגע בטיחותי או הובלה דחופה.</li>
+            <li><b>איך זה עובד:</b> תעדוף מהיר, בירור פרטים מראש ותיאום ברור לפני יציאה/תחילת עבודה.</li>
+            <li><b>מה כדאי לשלוח מיד:</b> עיר וכתובת/קומה, ותמונה או סרטון קצר (רק אם בטוח לצלם).</li>
+        </ul>
+
+        <div class="form-group">
+            <label for="emergencyType" data-ru="Тип экстренного случая:">סוג קריאת החירום:</label>
+            <select id="emergencyType">
+                <option value="נזילה / פיצוץ מים" data-ru="Прорыв воды / утечка">נזילה / פיצוץ מים</option>
+                <option value="תקלת חשמל / קצר" data-ru="Проблема с электричеством / замыкание">תקלת חשמל / קצר</option>
+                <option value="מפגע / תיקון דחוף" data-ru="Срочный ремонт / опасность">מפגע / תיקון דחוף</option>
+                <option value="הובלה / פינוי דחוף" data-ru="Срочная перевозка">הובלה / פינוי דחוף</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="emergencyCity" data-ru="Город и район:">עיר / אזור:</label>
+            <input type="text" id="emergencyCity" placeholder="למשל: כרמיאל / חיפה / צפון" data-ru-ph="Например: Кармиэль, Хайфа...">
+        </div>
+
+        <div class="social-btns-row">
+            <a id="emergencyWaBtn" href="https://wa.me/972559423309" target="_blank" rel="noopener" class="social-btn emergency-wa-btn">
+                🚨 <span data-ru="Отправить срочный запрос в WhatsApp">שלח קריאת חירום בוואטסאפ</span>
+            </a>
+            <a href="tel:+972559423309" class="social-btn call-btn">
+                📞 <span data-ru="Срочный звонок">חיוג חירום מיידי</span>
+            </a>
+        </div>
     </div>
 
     <!-- שאלות נפוצות -->
@@ -442,7 +497,7 @@
                     <span class="star">★<span class="fill">★</span></span>
                     <span class="star">★<span class="fill">★</span></span>
                 </div>
-                <div class="star-hint" data-ru="Нажмите на левую или правую половину звезды, чтобы выбрать половинку" data-he-hint>לחיצה על חצי כוכב בוחרת חצי דירוג</div>
+                <div class="star-hint" data-ru="Нажмите на левую или правую половину звезды, чтобы выбрать половинку">לחיצה על חצי כוכב בוחרת חצי דירוג</div>
                 <div style="margin-top: 5px; font-weight: bold; color: #007bff;" id="ratingText"></div>
                 <input type="hidden" id="reviewRating" value="5" required>
             </div>
@@ -517,8 +572,10 @@
     const ratingText = document.getElementById('ratingText');
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
+    const emergencyTypeEl = document.getElementById('emergencyType');
+    const emergencyCityEl = document.getElementById('emergencyCity');
+    const emergencyWaBtn = document.getElementById('emergencyWaBtn');
 
-    // ===== טקסטים דינמיים בשתי שפות =====
     const M = {
         he: {
             rating: v => `דירוג נבחר: ${v} מתוך 5 כוכבים`,
@@ -529,7 +586,9 @@
             fill: 'אנא מלא את כל השדות בטופס בצורה תקינה.',
             max: 'ניתן להעלות עד 10 תמונות בלבד.',
             err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
-            open: '🟢 פתוחים עכשיו', closed: '🔴 סגור כרגע – שלחו הודעה ונחזור אליכם', sat: '🟠 שבת – מקרי חירום בלבד',
+            open: '🟢 פתוחים עכשיו',
+            closed: '🔴 סגור כרגע – שלחו הודעה ונחזור אליכם',
+            sat: '🟠 שבת – מקרי חירום בלבד',
             alt: 'תמונת עבודה'
         },
         ru: {
@@ -541,12 +600,28 @@
             fill: 'Пожалуйста, заполните все поля формы.',
             max: 'Можно загрузить не более 10 фото.',
             err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
-            open: '🟢 Сейчас работаем', closed: '🔴 Сейчас закрыто – напишите, и мы свяжемся с вами', sat: '🟠 Суббота – только экстренные случаи',
+            open: '🟢 Сейчас работаем',
+            closed: '🔴 Сейчас закрыто – напишите, и мы свяжемся с вами',
+            sat: '🟠 Суббота – только экстренные случаи',
             alt: 'Фото работы'
         }
     };
 
-    // ===== החלפת שפה (עברית ↔ רוסית) =====
+    function updateEmergencyLink() {
+        if (!emergencyTypeEl || !emergencyCityEl || !emergencyWaBtn) return;
+        const selectedOption = emergencyTypeEl.options[emergencyTypeEl.selectedIndex];
+        const typeText = (lang === 'ru' && selectedOption && selectedOption.dataset.ru)
+            ? selectedOption.dataset.ru
+            : emergencyTypeEl.value;
+        const cityText = emergencyCityEl.value.trim() || (lang === 'ru' ? 'не указан' : 'לא צוין');
+
+        const msg = lang === 'ru'
+            ? `🚨 СРОЧНЫЙ ВЫЗОВ – M.R.\nТип случая: ${typeText}\nГород/район: ${cityText}\nПрикрепляю фото/видео и детали:`
+            : `🚨 קריאת חירום – M.R. הכל לבית\nסוג המקרה: ${typeText}\nעיר/אזור: ${cityText}\nמצרף תמונה/וידאו ופרטים:`;
+
+        emergencyWaBtn.href = `https://wa.me/972559423309?text=${encodeURIComponent(msg)}`;
+    }
+
     function setLang(l) {
         lang = l;
         try { localStorage.setItem('lang', l); } catch (e) {}
@@ -568,23 +643,29 @@
         ratingText.innerHTML = M[l].rating(reviewRatingInput.value);
         if (!submitBtn.disabled) submitBtn.innerHTML = M[l].send;
         updateStatus();
+        updateEmergencyLink();
         renderReviews();
     }
 
-    // תרגום שם קטגוריה לתצוגה בכרטיס תגובה
     function catLabel(cat) {
         if (lang !== 'ru') return cat;
         const opt = Array.from(document.getElementById('reviewCategory').options).find(o => o.value === cat);
-        return opt ? opt.dataset.ru : cat;
+        return opt && opt.dataset.ru ? opt.dataset.ru : cat;
     }
 
-    // ===== פתוח / סגור לפי שעון ישראל =====
     function updateStatus() {
-        const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+        const p = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Asia/Jerusalem',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: false
+        }).formatToParts(new Date());
         const get = t => p.find(x => x.type === t).value;
-        const day = get('weekday'), mins = (parseInt(get('hour')) % 24) * 60 + parseInt(get('minute'));
+        const day = get('weekday');
+        const mins = (parseInt(get('hour'), 10) % 24) * 60 + parseInt(get('minute'), 10);
         let state = 'closed';
-        if (['Sun','Mon','Tue','Wed','Thu'].includes(day) && mins >= 480 && mins < 1200) state = 'open';
+        if (['Sun', 'Mon', 'Tue', 'Wed', 'Thu'].includes(day) && mins >= 480 && mins < 1200) state = 'open';
         else if (day === 'Fri' && mins >= 540 && mins < 840) state = 'open';
         else if (day === 'Sat') state = 'sat';
         const el = document.getElementById('status');
@@ -592,7 +673,6 @@
         el.className = 'status ' + (state === 'open' ? 'open' : 'closed');
     }
 
-    // בחירת דירוג: 5 כוכבים, אפשר לבחור גם חצי כוכב (לחיצה על חצי הכוכב)
     function paintStars(val) {
         reviewRatingInput.value = val;
         ratingText.innerHTML = M[lang].rating(val);
@@ -612,22 +692,22 @@
     });
 
     function getStarsHTML(rating) {
-        let fulls = Math.floor(rating);
-        let hasHalf = (rating - fulls) >= 0.5;
+        const num = parseFloat(rating) || 5;
+        const fulls = Math.floor(num);
+        const hasHalf = (num - fulls) >= 0.5;
         let str = '';
-        for(let i=0; i<fulls; i++) str += '⭐';
-        if(hasHalf) str += '✨';
-        return `${str} (${rating}/5)`;
+        for (let i = 0; i < fulls; i++) str += '⭐';
+        if (hasHalf) str += '✨';
+        return `${str} (${num}/5)`;
     }
 
     function renderReviews() {
         reviewsList.innerHTML = '';
-        let selectedFilter = filterCategory.value;
+        const selectedFilter = filterCategory.value;
 
-        let filteredReviews = allReviews;
-        if (selectedFilter !== 'all') {
-            filteredReviews = allReviews.filter(r => r && r.category === selectedFilter);
-        }
+        const filteredReviews = selectedFilter === 'all'
+            ? allReviews
+            : allReviews.filter(r => r && r.category === selectedFilter);
 
         if (filteredReviews.length === 0) {
             reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].empty}</p>`;
@@ -636,13 +716,13 @@
 
         filteredReviews.forEach(review => {
             if (!review) return;
-            let card = document.createElement('div');
+            const card = document.createElement('div');
             card.className = 'review-card';
-            
+
             let imagesHTML = '';
-            if (review.imageUrls && review.imageUrls.length > 0) {
-                imagesHTML = `<div class="review-images-grid">` + 
-                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy">`).join('') + 
+            if (Array.isArray(review.imageUrls) && review.imageUrls.length > 0) {
+                imagesHTML = `<div class="review-images-grid">` +
+                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy">`).join('') +
                     `</div>`;
             }
 
@@ -661,12 +741,26 @@
 
     function escapeHTML(str) {
         if (!str) return '';
-        return String(str).replace(/[&<>'"]/g, 
+        return String(str).replace(/[&<>'"]/g,
             tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
         );
     }
 
-    // טעינת תגובות בזמן אמת עבור כל המשתמשים
+    async function uploadImageToImgBB(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        const res = await fetch(`https://api.imgbb.com/1/upload?key=${encodeURIComponent(IMGBB_API_KEY)}`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success || !data.data || !data.data.url) {
+            throw new Error('ImgBB upload failed');
+        }
+        return data.data.url;
+    }
+
+    reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].loading}</p>`;
     reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         allReviews = [];
@@ -683,20 +777,17 @@
     reviewForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        let name = document.getElementById('reviewerName').value.trim();
-        let category = document.getElementById('reviewCategory').value;
-        let rating = parseFloat(reviewRatingInput.value);
-        let text = document.getElementById('reviewText').value.trim();
-        let imageInput = document.getElementById('reviewImages');
-        let imageFiles = imageInput.files ? Array.from(imageInput.files) : [];
-        let date = new Date().toLocaleDateString('he-IL');
+        const name = document.getElementById('reviewerName').value.trim();
+        const category = document.getElementById('reviewCategory').value;
+        const rating = parseFloat(reviewRatingInput.value) || 5;
+        const text = document.getElementById('reviewText').value.trim();
+        const files = Array.from(document.getElementById('reviewImages').files || []);
 
-        if (!name || !category || !text || isNaN(rating)) {
+        if (!name || !category || !text) {
             alert(M[lang].fill);
             return;
         }
-
-        if (imageFiles.length > 10) {
+        if (files.length > 10) {
             alert(M[lang].max);
             return;
         }
@@ -704,77 +795,56 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = M[lang].sending;
 
-        let imageUrls = [];
-
-        if (imageFiles.length > 0) {
-            for (let i = 0; i < imageFiles.length; i++) {
-                try {
-                    let formData = new FormData();
-                    formData.append('image', imageFiles[i]);
-
-                    let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    let result = await response.json();
-                    
-                    if (result && result.success) {
-                        imageUrls.push(result.data.url);
-                    } else {
-                        console.error('ImgBB Error for image ' + i, result);
-                    }
-                } catch (error) {
-                    console.error('Error uploading image ' + i, error);
-                }
-            }
-        }
-
-        let newReview = { name, category, rating, text, date, imageUrls };
-        
         try {
-            let newRef = reviewsRef.push();
-            await newRef.set(newReview);
+            const imageUrls = [];
+            for (const file of files) {
+                const url = await uploadImageToImgBB(file);
+                imageUrls.push(url);
+            }
 
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = M[lang].send;
+            const dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'he-IL');
+            const newReview = {
+                name,
+                category,
+                rating,
+                text,
+                imageUrls,
+                date: dateStr
+            };
+
+            await reviewsRef.push(newReview);
 
             reviewForm.reset();
-            reviewRatingInput.value = '5';
             paintStars(5);
-            filterCategory.value = 'all';
 
-            // ההודעה לוואטסאפ נשארת בעברית כדי שתקרא אותה בקלות
-            let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
-                                  `👤 *שם:* ${encodeURIComponent(name)}%0A` +
-                                  `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
-                                  `⭐ *דירוג:* ${rating} כוכבים%0A` +
-                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}`;
-            
-            if (imageUrls.length > 0) {
-                whatsappMessage += `%0A%0A🖼️ *תמונות העבודה:*`;
-                imageUrls.forEach((url, index) => {
-                    whatsappMessage += `%0A${index + 1}. ${url}`;
-                });
-            }
+            const waText = lang === 'ru'
+                ? `⭐ Новый отзыв на сайте M.R.\nИмя: ${name}\nУслуга: ${category}\nОценка: ${rating}/5\nОтзыв: ${text}`
+                : `⭐ תגובה חדשה באתר M.R. הכל לבית\nשם: ${name}\nשירות: ${category}\nדירוג: ${rating}/5\nתגובה: ${text}`;
 
-            let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
-            window.open(whatsappUrl, '_blank');
-        } catch (error) {
-            console.error('Error saving review:', error);
+            window.open(`https://wa.me/972559423309?text=${encodeURIComponent(waText)}`, '_blank', 'noopener');
+        } catch (err) {
+            console.error(err);
             alert(M[lang].err);
+        } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = M[lang].send;
         }
     });
 
-    // אתחול: דירוג ברירת מחדל 5 כוכבים, ושפה שמורה
-    paintStars(5);
+    emergencyTypeEl.addEventListener('change', updateEmergencyLink);
+    emergencyCityEl.addEventListener('input', updateEmergencyLink);
+
     let savedLang = 'he';
-    try { savedLang = localStorage.getItem('lang') || 'he'; } catch (e) {}
+    try {
+        const stored = localStorage.getItem('lang');
+        if (stored === 'he' || stored === 'ru') savedLang = stored;
+    } catch (e) {}
+
+    paintStars(5);
     setLang(savedLang);
+    updateStatus();
     setInterval(updateStatus, 60000);
 </script>
 
 </body>
 </html>
-
