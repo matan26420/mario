@@ -37,7 +37,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
                         url('21215792-729b-4a30-ac73-18f9a904b58c.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #333;
@@ -46,7 +46,6 @@
             text-align: center;
             min-height: 100vh;
         }
-
         .container {
             max-width: 650px;
             margin: 0 auto;
@@ -56,358 +55,182 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             backdrop-filter: blur(5px);
         }
-
-        /* החלפת שפה */
         .lang-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; direction: ltr; }
         .lang-switch button {
             border: 2px solid #007bff; background: #fff; color: #007bff; padding: 6px 18px;
             border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
         .lang-switch button.on { background: #007bff; color: #fff; }
-        
-        /* אזור כרטיס הביקור והלוגו בחלק העליון */
         .top-brand-bar {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 25px; margin-bottom: 30px;
         }
-
         .business-card-section {
-            background: #ffffff;
-            padding: 10px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 520px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: #ffffff; padding: 10px; border-radius: 12px; width: 100%;
+            max-width: 520px; box-sizing: border-box; display: flex; justify-content: center;
+            align-items: center; box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .brand-character-img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         .brand-logo-img {
-            width: 260px;
-            height: 260px;
-            border-radius: 12px;
-            object-fit: cover;
+            width: 260px; height: 260px; border-radius: 12px; object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-
         h1 { margin: 10px 0 5px 0; color: #222; font-size: 30px; font-weight: bold; }
         h2 { color: #007bff; margin-top: 25px; }
-
         .services-grid, .moves-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;
         }
         a.btn {
-            display: block;
-            background: #007bff;
-            color: white;
-            padding: 12px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.3s;
+            display: block; background: #007bff; color: white; padding: 12px;
+            text-decoration: none; border-radius: 6px; font-weight: bold; transition: background 0.3s;
         }
         a.btn:hover { background: #0056b3; }
-
-        /* אזור פעילות ושעות */
         .info-box { background: #f4f8ff; border-radius: 8px; padding: 12px 15px; line-height: 1.8; margin-bottom: 20px; }
         .info-box .row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccd; padding: 3px 0; }
         .info-box .row:last-child { border: 0; }
-
-        /* שירות חירום מותאם מראש */
         .emergency-box {
-            border: 2px solid #dc3545;
-            background: #fff5f5;
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 20px;
-            text-align: right;
-            line-height: 1.7;
+            border: 2px solid #dc3545; background: #fff5f5; border-radius: 10px;
+            padding: 16px; margin-bottom: 20px; text-align: right; line-height: 1.7;
         }
         html[dir="ltr"] .emergency-box { text-align: left; }
-        .emergency-box h3 {
-            margin: 0 0 8px;
-            color: #b01e2c;
-            font-size: 18px;
-        }
-        .emergency-tips {
-            margin: 8px 0 14px;
-            padding-inline-start: 20px;
-            color: #444;
-        }
-
-        /* שאלות נפוצות */
+        .emergency-box h3 { margin: 0 0 8px; color: #b01e2c; font-size: 18px; }
+        .emergency-tips { margin: 8px 0 14px; padding-inline-start: 20px; color: #444; }
         .faq details { background: #fff; border: 1px solid #e3e3e3; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; text-align: right; }
         html[dir="ltr"] .faq details { text-align: left; }
         .faq summary { font-weight: bold; cursor: pointer; color: #222; }
         .faq p, .faq ul { margin: 8px 0 0; color: #555; line-height: 1.7; }
         .faq ul { padding-inline-start: 20px; }
-
-        /* אזור קישורים רשתות חברתיות */
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin: 25px 0;
-        }
-        .social-btns-row {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .social-links { display: flex; flex-direction: column; align-items: center; gap: 15px; margin: 25px 0; }
+        .social-btns-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 6px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px;
+            border-radius: 6px; color: white; text-decoration: none; font-weight: bold;
+            font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tiktok-btn { background: #000000; }
         .whatsapp-btn { background: #25d366; }
         .call-btn { background: #222222; }
         .emergency-wa-btn { background: #dc3545; }
-
-        /* חתימה */
         .signature-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            background: #f9f9f9;
-            padding: 15px 30px;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 450px;
-            box-sizing: border-box;
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            background: #f9f9f9; padding: 15px 30px; border-radius: 12px; border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); width: 100%; max-width: 450px; box-sizing: border-box;
         }
-        .signature-label {
-            font-size: 18px;
-            color: #333;
-            font-weight: bold;
-        }
-        .signature-inline-img {
-            max-height: 120px;
-            width: auto;
-            object-fit: contain;
-        }
+        .signature-label { font-size: 18px; color: #333; font-weight: bold; }
+        .signature-inline-img { max-height: 120px; width: auto; object-fit: contain; }
 
         /* גלריית עבודות לפני ואחרי */
         .gallery-section {
-            margin-top: 30px;
-            background: #f4f8ff;
-            border: 2px solid #007bff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: right;
+            margin-top: 30px; background: #f4f8ff; border: 2px solid #007bff;
+            padding: 20px; border-radius: 10px; text-align: right;
         }
         html[dir="ltr"] .gallery-section { text-align: left; }
-
         .gallery-toggle-btn {
-            background: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 15px;
+            background: #007bff; color: #fff; border: none; padding: 10px 18px;
+            border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; margin-bottom: 15px;
         }
         .gallery-toggle-btn:hover { background: #0056b3; }
-
         .gallery-upload-box {
-            display: none;
-            background: #ffffff;
-            border: 1px dashed #007bff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
+            display: none; background: #ffffff; border: 1px dashed #007bff;
+            border-radius: 8px; padding: 15px; margin-bottom: 20px;
         }
         .gallery-upload-box.open { display: block; }
-
         .before-after-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 10px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;
         }
         @media (max-width: 520px) {
             .before-after-columns { grid-template-columns: 1fr; }
         }
-        .ba-col {
-            background: #f9fbff;
-            border: 1px solid #e1e8f5;
-            border-radius: 8px;
-            padding: 8px;
-        }
+        .ba-col { background: #f9fbff; border: 1px solid #e1e8f5; border-radius: 8px; padding: 8px; }
         .ba-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 8px;
+            display: inline-block; padding: 3px 10px; border-radius: 12px;
+            font-size: 12px; font-weight: bold; margin-bottom: 8px;
         }
         .ba-badge.before { background: #fde2e2; color: #a12727; }
         .ba-badge.after { background: #d4f5dd; color: #176b2c; }
 
         /* סקציית תגובות */
         .reviews-section {
-            margin-top: 30px;
-            background: #fafafa;
-            border: 2px dashed #007bff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: right;
+            margin-top: 30px; background: #fafafa; border: 2px dashed #007bff;
+            padding: 20px; border-radius: 8px; text-align: right;
         }
-        html[dir="ltr"] .reviews-section, html[dir="ltr"] .form-group, html[dir="ltr"] .review-card, html[dir="ltr"] .filter-container { text-align: left; }
-        .form-group {
-            margin-bottom: 15px;
-            text-align: right;
-        }
+        html[dir="ltr"] .reviews-section, html[dir="ltr"] .form-group,
+        html[dir="ltr"] .review-card, html[dir="ltr"] .filter-container { text-align: left; }
+        .form-group { margin-bottom: 15px; text-align: right; }
         html[dir="ltr"] .form-group { text-align: left; }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
+            width: 100%; padding: 10px; box-sizing: border-box;
+            border: 1px solid #ccc; border-radius: 4px; font-size: 14px;
         }
-        
         .stars-container {
-            display: flex;
-            justify-content: flex-start;
-            gap: 6px;
-            font-size: 40px;
-            line-height: 1;
-            padding: 5px 0;
+            display: flex; justify-content: flex-start; gap: 6px;
+            font-size: 40px; line-height: 1; padding: 5px 0;
         }
         .star {
-            position: relative;
-            display: inline-block;
-            color: #ddd;
-            cursor: pointer;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            transition: transform 0.1s ease;
+            position: relative; display: inline-block; color: #ddd; cursor: pointer;
+            user-select: none; -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation; transition: transform 0.1s ease;
         }
         .star .fill {
-            position: absolute;
-            top: 0;
-            inset-inline-start: 0;
-            width: 0;
-            overflow: hidden;
-            white-space: nowrap;
-            color: #ffc107;
-            pointer-events: none;
+            position: absolute; top: 0; inset-inline-start: 0; width: 0;
+            overflow: hidden; white-space: nowrap; color: #ffc107; pointer-events: none;
         }
         .star:active { transform: scale(1.12); }
         .star-hint { font-size: 12px; color: #888; margin-top: 2px; }
-
         .other-reviews { background: #f4f8ff; border-radius: 8px; padding: 14px; margin-top: 20px; text-align: center; }
         .other-reviews p { margin: 0 0 10px; font-weight: bold; color: #444; }
         .other-reviews .social-btns-row { gap: 10px; }
         .google-btn { background: #4285f4; }
         .b144-btn { background: #d32f2f; }
-
-        .reviews-list {
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-        }
+        .reviews-list { margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px; }
         .review-card {
-            background: #fff;
-            border: 1px solid #e1e1e1;
-            padding: 12px 15px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            text-align: right;
+            background: #fff; border: 1px solid #e1e1e1; padding: 12px 15px;
+            border-radius: 6px; margin-bottom: 12px; text-align: right;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         html[dir="ltr"] .review-card { text-align: left; }
         .review-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 14px;
-            color: #444;
-            margin-bottom: 5px;
+            display: flex; justify-content: space-between; font-weight: bold;
+            font-size: 14px; color: #444; margin-bottom: 5px; gap: 8px;
         }
+
+        /* תצוגת תמונות וסרטונים */
         .review-images-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            gap: 8px;
-            margin-top: 10px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px; margin-top: 10px;
         }
         .review-image {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 6px;
-            display: block;
-            cursor: pointer;
-            transition: transform 0.15s ease;
+            width: 100%; height: 90px; object-fit: cover; border-radius: 6px;
+            display: block; cursor: pointer; transition: transform 0.15s ease;
         }
         .review-image:hover { transform: scale(1.03); }
+        .review-videos-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px; margin-top: 10px;
+        }
+        .review-video {
+            width: 100%; max-height: 220px; border-radius: 6px;
+            background: #000; display: block;
+        }
 
-        /* חלון הגדלת תמונה */
+        /* חלון הגדלה לתמונה או וידאו */
         .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88);
+            z-index: 9999; align-items: center; justify-content: center; padding: 20px;
         }
         .lightbox.open { display: flex; }
-        .lightbox img {
-            max-width: 95%;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+        .lightbox img, .lightbox video {
+            max-width: 95%; max-height: 90vh; border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.5); background: #000;
         }
-        
         footer {
-            margin-top: 30px;
-            font-size: 13px;
-            color: #777;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
+            margin-top: 30px; font-size: 13px; color: #777;
+            border-top: 1px solid #eee; padding-top: 15px;
         }
     </style>
 </head>
@@ -465,7 +288,6 @@
         <a class="btn" data-ru="🏢 Перевозки офисов" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20משרדים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🏢 הובלות משרדים</a>
     </div>
 
-    <!-- אזור פעילות ושעות -->
     <h2 data-ru="📍 Район работы">📍 אזור פעילות</h2>
     <div class="info-box" data-ru="Работаем <b>от Кирьят-Шмоны до Беэр-Шевы</b>">אנחנו פעילים <b>מקרית שמונה ועד באר שבע</b></div>
 
@@ -476,7 +298,7 @@
         <div class="row"><span data-ru="Суббота">שבת</span><b style="color:#a12727" data-ru="Только экстренные случаи">מקרה חירום בלבד</b></div>
     </div>
 
-    <!-- שירות חירום מותאם מראש -->
+    <!-- שירות חירום -->
     <h2 data-ru="🚨 Срочный вызов">🚨 שירות חירום</h2>
     <div class="emergency-box">
         <h3 data-ru="Что включает срочный вызов и как подготовиться заранее:">מה כולל שירות חירום ואיך נערכים מראש:</h3>
@@ -519,7 +341,6 @@
             ➕ הוסף תמונות עבודה (לפני / אחרי)
         </button>
 
-        <!-- טופס העלאת לפני ואחרי (לבעל העסק) -->
         <div class="gallery-upload-box" id="galleryUploadBox">
             <h3 style="margin-top: 0; color: #007bff;" data-ru="Загрузить новую работу в галерею:">העלאת עבודה חדשה לגלריה:</h3>
             <form id="galleryForm">
@@ -553,20 +374,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="beforeImages" data-ru="Фото ДО работы (до 10 фото):">תמונות לפני העבודה (עד 10 תמונות):</label>
-                    <input type="file" id="beforeImages" accept="image/*" multiple required>
+                    <label for="beforeImages" data-ru="Фото/видео ДО работы (до 10 файлов):">תמונות / סרטונים לפני העבודה (עד 10 קבצים):</label>
+                    <input type="file" id="beforeImages" accept="image/*,video/*" multiple required>
                 </div>
 
                 <div class="form-group">
-                    <label for="afterImages" data-ru="Фото ПОСЛЕ работы (до 10 фото):">תמונות אחרי העבודה (עד 10 תמונות):</label>
-                    <input type="file" id="afterImages" accept="image/*" multiple required>
+                    <label for="afterImages" data-ru="Фото/видео ПОСЛЕ работы (до 10 файлов):">תמונות / סרטונים אחרי העבודה (עד 10 קבצים):</label>
+                    <input type="file" id="afterImages" accept="image/*,video/*" multiple required>
                 </div>
 
                 <button type="submit" class="btn" id="gallerySubmitBtn" style="background: #007bff; width: 100%; border: none; cursor: pointer; font-size: 16px;"></button>
             </form>
         </div>
 
-        <!-- סינון גלריה לפי קטגוריה -->
         <div class="filter-container" style="text-align: right; margin-bottom: 15px;">
             <label for="filterGalleryCategory" style="font-weight: bold; margin-left: 10px;" data-ru="Фильтр галереи по категории:">סנן עבודות לפי קטגוריה:</label>
             <select id="filterGalleryCategory" onchange="renderGallery()" style="width: 200px; padding: 5px;">
@@ -619,7 +439,7 @@
     <div class="reviews-section">
         <h2 data-ru="⭐ Отзывы клиентов и оценки">⭐ תגובות לקוחות ודירוגים</h2>
         <h3 data-ru="✍️ Оставьте отзыв и оцените нас:">✍️ השאר תגובה ודרג אותנו:</h3>
-        
+
         <form id="reviewForm">
             <div class="form-group">
                 <label for="reviewerName" data-ru="Полное имя:">שם מלא:</label>
@@ -665,8 +485,8 @@
             </div>
 
             <div class="form-group">
-                <label for="reviewImages" data-ru="Прикрепите фото работы (до 10 фото):">צרף תמונות להוכחת העבודה (עד 10 תמונות):</label>
-                <input type="file" id="reviewImages" accept="image/*" multiple>
+                <label for="reviewImages" data-ru="Прикрепите фото или видео работы (до 10 файлов):">צרף תמונות או סרטונים להוכחת העבודה (עד 10 קבצים):</label>
+                <input type="file" id="reviewImages" accept="image/*,video/*" multiple>
             </div>
 
             <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;"></button>
@@ -707,13 +527,15 @@
     <footer>Matan Richter © M.R. הכל לבית</footer>
 </div>
 
-<!-- חלון הגדלת תמונה -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="">
+<!-- חלון הגדלה לתמונה או סרטון -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <img id="lightboxImg" src="" alt="" style="display: none;">
+    <video id="lightboxVideo" src="" controls playsinline style="display: none;"></video>
 </div>
 
 <script>
-    const IMGBB_API_KEY = "7b4b0bd1f4a6019c1bb0172dd143e46d";
+    const CLOUDINARY_CLOUD_NAME = "ve1liculn";
+    const CLOUDINARY_UPLOAD_PRESET = "l5javtcs";
     const ADMIN_GALLERY_PIN = "MR26420";
 
     const firebaseConfig = {
@@ -753,19 +575,19 @@
         he: {
             rating: v => `דירוג נבחר: ${v} מתוך 5 כוכבים`,
             send: 'פרסם תגובה באתר ושלח לוואטסאפ 🚀',
-            sending: 'מעלה תמונות ושולח... ⏳',
+            sending: 'מעלה קבצים ושולח... ⏳',
             loading: 'טוען תגובות...',
             empty: 'אין עדיין תגובות להצגה בקטגוריה זו.',
             fill: 'אנא מלא את כל השדות בטופס בצורה תקינה.',
-            max: 'ניתן להעלות עד 10 תמונות בלבד.',
-            err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
-            alt: 'תמונת עבודה',
+            max: 'ניתן להעלות עד 10 קבצים בלבד.',
+            err: 'שגיאה בשמירת התגובה. אנא נסה שוב.',
+            alt: 'מדיית עבודה',
             galSend: 'פרסם עבודה בגלריה (לפני ואחרי) 📸',
-            galSending: 'מעלה תמונות לגלריה... ⏳',
+            galSending: 'מעלה קבצים לגלריה... ⏳',
             galLoading: 'טוען עבודות מהגלריה...',
             galEmpty: 'אין עדיין עבודות להצגה בקטגוריה זו.',
             galBadPin: 'קוד מנהל שגוי. רק בעל העסק יכול להעלות עבודות לגלריה.',
-            galNeedImgs: 'אנא בחר לפחות תמונה אחת של "לפני" ותמונה אחת של "אחרי".',
+            galNeedImgs: 'אנא בחר לפחות קובץ אחד של "לפני" וקובץ אחד של "אחרי".',
             galErr: 'שגיאה בהעלאת העבודה לגלריה. אנא נסה שוב.',
             before: 'לפני העבודה',
             after: 'אחרי העבודה'
@@ -773,34 +595,76 @@
         ru: {
             rating: v => `Выбранная оценка: ${v} из 5 звёзд`,
             send: 'Опубликовать отзыв и отправить в WhatsApp 🚀',
-            sending: 'Загрузка фото и отправка... ⏳',
+            sending: 'Загрузка файлов и отправка... ⏳',
             loading: 'Загрузка отзывов...',
             empty: 'В этой категории пока нет отзывов.',
             fill: 'Пожалуйста, заполните все поля формы.',
-            max: 'Можно загрузить не более 10 фото.',
+            max: 'Можно загрузить не более 10 файлов.',
             err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
-            alt: 'Фото работы',
+            alt: 'Медиа работы',
             galSend: 'Опубликовать работу (До и После) 📸',
-            galSending: 'Загрузка фото в галерею... ⏳',
+            galSending: 'Загрузка файлов в галерею... ⏳',
             galLoading: 'Загрузка галереи...',
             galEmpty: 'В этой категории пока нет работ.',
             galBadPin: 'Неверный пароль администратора.',
-            galNeedImgs: 'Выберите хотя бы одно фото «До» и одно фото «После».',
+            galNeedImgs: 'Выберите хотя бы один файл «До» и один файл «После».',
             galErr: 'Ошибка сохранения в галерею. Попробуйте ещё раз.',
             before: 'ДО работы',
             after: 'ПОСЛЕ работы'
         }
     };
 
-    function openLightbox(url) {
+    function isVideoUrl(url) {
+        if (!url || typeof url !== 'string') return false;
+        return /\.(mp4|mov|webm|ogg|m4v)(\?|$)/i.test(url) || url.includes('/video/upload/');
+    }
+
+    function openLightbox(url, type = 'image') {
         const lb = document.getElementById('lightbox');
         const img = document.getElementById('lightboxImg');
-        img.src = url;
+        const vid = document.getElementById('lightboxVideo');
+        if (type === 'video' || isVideoUrl(url)) {
+            img.style.display = 'none';
+            img.src = '';
+            vid.style.display = 'block';
+            vid.src = url;
+        } else {
+            vid.pause();
+            vid.style.display = 'none';
+            vid.src = '';
+            img.style.display = 'block';
+            img.src = url;
+        }
         lb.classList.add('open');
     }
 
-    function closeLightbox() {
-        document.getElementById('lightbox').classList.remove('open');
+    function closeLightbox(event) {
+        if (event && event.target.tagName === 'VIDEO') return;
+        const lb = document.getElementById('lightbox');
+        const vid = document.getElementById('lightboxVideo');
+        vid.pause();
+        vid.src = '';
+        lb.classList.remove('open');
+    }
+
+    function renderMediaBlock(urls, labelText) {
+        if (!Array.isArray(urls) || urls.length === 0) return '';
+        const images = urls.filter(u => !isVideoUrl(u));
+        const videos = urls.filter(u => isVideoUrl(u));
+
+        const imgsHtml = images.length
+            ? `<div class="review-images-grid">${images.map(url =>
+                `<img src="${escapeHTML(url)}" alt="${escapeHTML(labelText)}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}', 'image')">`
+              ).join('')}</div>`
+            : '';
+
+        const vidsHtml = videos.length
+            ? `<div class="review-videos-grid">${videos.map(url =>
+                `<video src="${escapeHTML(url)}" controls playsinline preload="metadata" class="review-video"></video>`
+              ).join('')}</div>`
+            : '';
+
+        return imgsHtml + vidsHtml;
     }
 
     toggleGalleryUploadBtn.addEventListener('click', () => {
@@ -889,18 +753,22 @@
         );
     }
 
-    async function uploadImageToImgBB(file) {
+    async function uploadMediaToCloudinary(file) {
+        const isVid = file.type && file.type.startsWith('video/');
+        const resourceType = isVid ? 'video' : 'image';
         const formData = new FormData();
-        formData.append('image', file);
-        const res = await fetch(`https://api.imgbb.com/1/upload?key=${encodeURIComponent(IMGBB_API_KEY)}`, {
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/${resourceType}/upload`, {
             method: 'POST',
             body: formData
         });
         const data = await res.json();
-        if (!res.ok || !data.success || !data.data || !data.data.url) {
-            throw new Error('ImgBB upload failed');
+        if (!res.ok || !data.secure_url) {
+            throw new Error(data.error?.message || 'Cloudinary upload failed');
         }
-        return data.data.url;
+        return data.secure_url;
     }
 
     /* ===== גלריית לפני ואחרי ===== */
@@ -925,14 +793,6 @@
             const beforeImgs = Array.isArray(item.beforeUrls) ? item.beforeUrls : [];
             const afterImgs = Array.isArray(item.afterUrls) ? item.afterUrls : [];
 
-            const beforeGrid = beforeImgs.map(url =>
-                `<img src="${escapeHTML(url)}" alt="${M[lang].before}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`
-            ).join('');
-
-            const afterGrid = afterImgs.map(url =>
-                `<img src="${escapeHTML(url)}" alt="${M[lang].after}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`
-            ).join('');
-
             card.innerHTML = `
                 <div class="review-header">
                     <span>🛠️ ${escapeHTML(item.title)} <span style="color: #007bff; font-weight: normal;">(${escapeHTML(catLabel(item.category))})</span></span>
@@ -941,11 +801,11 @@
                 <div class="before-after-columns">
                     <div class="ba-col">
                         <span class="ba-badge before">${M[lang].before}</span>
-                        <div class="review-images-grid">${beforeGrid}</div>
+                        ${renderMediaBlock(beforeImgs, M[lang].before)}
                     </div>
                     <div class="ba-col">
                         <span class="ba-badge after">${M[lang].after}</span>
-                        <div class="review-images-grid">${afterGrid}</div>
+                        ${renderMediaBlock(afterImgs, M[lang].after)}
                     </div>
                 </div>
             `;
@@ -999,11 +859,11 @@
         try {
             const beforeUrls = [];
             for (const file of beforeFiles) {
-                beforeUrls.push(await uploadImageToImgBB(file));
+                beforeUrls.push(await uploadMediaToCloudinary(file));
             }
             const afterUrls = [];
             for (const file of afterFiles) {
-                afterUrls.push(await uploadImageToImgBB(file));
+                afterUrls.push(await uploadMediaToCloudinary(file));
             }
 
             const dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'he-IL');
@@ -1045,12 +905,7 @@
             const card = document.createElement('div');
             card.className = 'review-card';
 
-            let imagesHTML = '';
-            if (Array.isArray(review.imageUrls) && review.imageUrls.length > 0) {
-                imagesHTML = `<div class="review-images-grid">` +
-                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`).join('') +
-                    `</div>`;
-            }
+            const mediaHTML = renderMediaBlock(review.imageUrls, M[lang].alt);
 
             card.innerHTML = `
                 <div class="review-header">
@@ -1058,7 +913,7 @@
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
                 <p style="margin: 8px 0; color: #333; word-break: break-word;">${escapeHTML(review.text)}</p>
-                ${imagesHTML}
+                ${mediaHTML}
                 <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${escapeHTML(review.date || '')}</div>
             `;
             reviewsList.appendChild(card);
@@ -1103,7 +958,7 @@
         try {
             const imageUrls = [];
             for (const file of files) {
-                const url = await uploadImageToImgBB(file);
+                const url = await uploadMediaToCloudinary(file);
                 imageUrls.push(url);
             }
 
