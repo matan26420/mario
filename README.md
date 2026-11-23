@@ -217,6 +217,66 @@
             object-fit: contain;
         }
 
+        /* גלריית עבודות לפני ואחרי */
+        .gallery-section {
+            margin-top: 30px;
+            background: #f4f8ff;
+            border: 2px solid #007bff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: right;
+        }
+        html[dir="ltr"] .gallery-section { text-align: left; }
+
+        .gallery-toggle-btn {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        .gallery-toggle-btn:hover { background: #0056b3; }
+
+        .gallery-upload-box {
+            display: none;
+            background: #ffffff;
+            border: 1px dashed #007bff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .gallery-upload-box.open { display: block; }
+
+        .before-after-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        @media (max-width: 520px) {
+            .before-after-columns { grid-template-columns: 1fr; }
+        }
+        .ba-col {
+            background: #f9fbff;
+            border: 1px solid #e1e8f5;
+            border-radius: 8px;
+            padding: 8px;
+        }
+        .ba-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .ba-badge.before { background: #fde2e2; color: #a12727; }
+        .ba-badge.after { background: #d4f5dd; color: #176b2c; }
+
         /* סקציית תגובות */
         .reviews-section {
             margin-top: 30px;
@@ -297,6 +357,7 @@
             text-align: right;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+        html[dir="ltr"] .review-card { text-align: left; }
         .review-header {
             display: flex;
             justify-content: space-between;
@@ -317,6 +378,28 @@
             object-fit: cover;
             border-radius: 6px;
             display: block;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+        .review-image:hover { transform: scale(1.03); }
+
+        /* חלון הגדלת תמונה */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.5);
         }
         
         footer {
@@ -426,6 +509,84 @@
                 📞 <span data-ru="Срочный звонок">חיוג חירום מיידי</span>
             </a>
         </div>
+    </div>
+
+    <!-- גלריית עבודות לפני ואחרי -->
+    <div class="gallery-section">
+        <h2 style="margin-top: 0;" data-ru="📸 Галерея работ: До и После">📸 גלריית עבודות: לפני ואחרי</h2>
+
+        <button type="button" class="gallery-toggle-btn" id="toggleGalleryUploadBtn" data-ru="➕ Добавить фото работы (До / После)">
+            ➕ הוסף תמונות עבודה (לפני / אחרי)
+        </button>
+
+        <!-- טופס העלאת לפני ואחרי (לבעל העסק) -->
+        <div class="gallery-upload-box" id="galleryUploadBox">
+            <h3 style="margin-top: 0; color: #007bff;" data-ru="Загрузить новую работу в галерею:">העלאת עבודה חדשה לגלריה:</h3>
+            <form id="galleryForm">
+                <div class="form-group">
+                    <label for="galleryPin" data-ru="Пароль администратора:">קוד מנהל (לבעל העסק בלבד):</label>
+                    <input type="password" id="galleryPin" required placeholder="הכנס קוד מנהל" data-ru-ph="Введите пароль">
+                </div>
+
+                <div class="form-group">
+                    <label for="galleryCategory" data-ru="Категория работы:">קטגוריית העבודה:</label>
+                    <select id="galleryCategory" required>
+                        <option value="" data-ru="Выберите услугу...">בחר שירות...</option>
+                        <option value="אינסטלציה" data-ru="Сантехника">אינסטלציה</option>
+                        <option value="חשמל" data-ru="Электрика">חשמל</option>
+                        <option value="צבע" data-ru="Покраска">צבע</option>
+                        <option value="חידוש רהיטים" data-ru="Реставрация мебели">חידוש רהיטים</option>
+                        <option value="ניקיון" data-ru="Уборка">ניקיון</option>
+                        <option value="הריסות" data-ru="Демонтаж">הריסות</option>
+                        <option value="שיפוצים" data-ru="Ремонт">שיפוצים</option>
+                        <option value="עבודות גבס" data-ru="Гипсокартон">עבודות גבס</option>
+                        <option value="הובלות גדולות" data-ru="Большие перевозки">הובלות גדולות</option>
+                        <option value="הובלות קטנות" data-ru="Малые перевозки">הובלות קטנות</option>
+                        <option value="הובלת רהיט אחד" data-ru="Перевозка одного предмета мебели">הובלת רהיט אחד</option>
+                        <option value="הובלות משרדים" data-ru="Перевозки офисов">הובלות משרדים</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="galleryTitle" data-ru="Краткое описание работы:">תיאור קצר של העבודה:</label>
+                    <input type="text" id="galleryTitle" required placeholder="למשל: שיפוץ חדר אמבטיה / צביעת דירה בכרמיאל" data-ru-ph="Например: Ремонт ванной / Покраска квартиры">
+                </div>
+
+                <div class="form-group">
+                    <label for="beforeImages" data-ru="Фото ДО работы (до 10 фото):">תמונות לפני העבודה (עד 10 תמונות):</label>
+                    <input type="file" id="beforeImages" accept="image/*" multiple required>
+                </div>
+
+                <div class="form-group">
+                    <label for="afterImages" data-ru="Фото ПОСЛЕ работы (до 10 фото):">תמונות אחרי העבודה (עד 10 תמונות):</label>
+                    <input type="file" id="afterImages" accept="image/*" multiple required>
+                </div>
+
+                <button type="submit" class="btn" id="gallerySubmitBtn" style="background: #007bff; width: 100%; border: none; cursor: pointer; font-size: 16px;"></button>
+            </form>
+        </div>
+
+        <!-- סינון גלריה לפי קטגוריה -->
+        <div class="filter-container" style="text-align: right; margin-bottom: 15px;">
+            <label for="filterGalleryCategory" style="font-weight: bold; margin-left: 10px;" data-ru="Фильтр галереи по категории:">סנן עבודות לפי קטגוריה:</label>
+            <select id="filterGalleryCategory" onchange="renderGallery()" style="width: 200px; padding: 5px;">
+                <option value="all" data-ru="Показать все">הצג הכל</option>
+                <option value="אינסטלציה" data-ru="Сантехника">אינסטלציה</option>
+                <option value="חשמל" data-ru="Электрика">חשמל</option>
+                <option value="צבע" data-ru="Покраска">צבע</option>
+                <option value="חידוש רהיטים" data-ru="Реставрация мебели">חידוש רהיטים</option>
+                <option value="ניקיון" data-ru="Уборка">ניקיון</option>
+                <option value="הריסות" data-ru="Демонтаж">הריסות</option>
+                <option value="שיפוצים" data-ru="Ремонт">שיפוצים</option>
+                <option value="עבודות גבס" data-ru="Гипсокартон">עבודות גבס</option>
+                <option value="הובלות גדולות" data-ru="Большие перевозки">הובלות גדולות</option>
+                <option value="הובלות קטנות" data-ru="Малые перевозки">הובלות קטנות</option>
+                <option value="הובלת רהיט אחד" data-ru="Перевозка одного предмета мебели">הובלת רהיט אחד</option>
+                <option value="הובלות משרדים" data-ru="Перевозки офисов">הובלות משרדים</option>
+            </select>
+        </div>
+
+        <div class="reviews-list" id="galleryList"></div>
     </div>
 
     <!-- שאלות נפוצות -->
@@ -546,8 +707,14 @@
     <footer>Matan Richter © M.R. הכל לבית</footer>
 </div>
 
+<!-- חלון הגדלת תמונה -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="">
+</div>
+
 <script>
     const IMGBB_API_KEY = "7b4b0bd1f4a6019c1bb0172dd143e46d";
+    const ADMIN_GALLERY_PIN = "MR26420";
 
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
@@ -557,8 +724,10 @@
     }
     const database = firebase.database();
     const reviewsRef = database.ref('reviews');
+    const galleryRef = database.ref('gallery');
 
     let allReviews = [];
+    let allGallery = [];
     let lang = 'he';
 
     const reviewForm = document.getElementById('reviewForm');
@@ -568,6 +737,14 @@
     const ratingText = document.getElementById('ratingText');
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
+
+    const galleryForm = document.getElementById('galleryForm');
+    const galleryList = document.getElementById('galleryList');
+    const filterGalleryCategory = document.getElementById('filterGalleryCategory');
+    const gallerySubmitBtn = document.getElementById('gallerySubmitBtn');
+    const toggleGalleryUploadBtn = document.getElementById('toggleGalleryUploadBtn');
+    const galleryUploadBox = document.getElementById('galleryUploadBox');
+
     const emergencyTypeEl = document.getElementById('emergencyType');
     const emergencyCityEl = document.getElementById('emergencyCity');
     const emergencyWaBtn = document.getElementById('emergencyWaBtn');
@@ -582,7 +759,16 @@
             fill: 'אנא מלא את כל השדות בטופס בצורה תקינה.',
             max: 'ניתן להעלות עד 10 תמונות בלבד.',
             err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
-            alt: 'תמונת עבודה'
+            alt: 'תמונת עבודה',
+            galSend: 'פרסם עבודה בגלריה (לפני ואחרי) 📸',
+            galSending: 'מעלה תמונות לגלריה... ⏳',
+            galLoading: 'טוען עבודות מהגלריה...',
+            galEmpty: 'אין עדיין עבודות להצגה בקטגוריה זו.',
+            galBadPin: 'קוד מנהל שגוי. רק בעל העסק יכול להעלות עבודות לגלריה.',
+            galNeedImgs: 'אנא בחר לפחות תמונה אחת של "לפני" ותמונה אחת של "אחרי".',
+            galErr: 'שגיאה בהעלאת העבודה לגלריה. אנא נסה שוב.',
+            before: 'לפני העבודה',
+            after: 'אחרי העבודה'
         },
         ru: {
             rating: v => `Выбранная оценка: ${v} из 5 звёзд`,
@@ -593,9 +779,33 @@
             fill: 'Пожалуйста, заполните все поля формы.',
             max: 'Можно загрузить не более 10 фото.',
             err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
-            alt: 'Фото работы'
+            alt: 'Фото работы',
+            galSend: 'Опубликовать работу (До и После) 📸',
+            galSending: 'Загрузка фото в галерею... ⏳',
+            galLoading: 'Загрузка галереи...',
+            galEmpty: 'В этой категории пока нет работ.',
+            galBadPin: 'Неверный пароль администратора.',
+            galNeedImgs: 'Выберите хотя бы одно фото «До» и одно фото «После».',
+            galErr: 'Ошибка сохранения в галерею. Попробуйте ещё раз.',
+            before: 'ДО работы',
+            after: 'ПОСЛЕ работы'
         }
     };
+
+    function openLightbox(url) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = url;
+        lb.classList.add('open');
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+    }
+
+    toggleGalleryUploadBtn.addEventListener('click', () => {
+        galleryUploadBox.classList.toggle('open');
+    });
 
     function updateEmergencyLink() {
         if (!emergencyTypeEl || !emergencyCityEl || !emergencyWaBtn) return;
@@ -632,7 +842,9 @@
 
         ratingText.innerHTML = M[l].rating(reviewRatingInput.value);
         if (!submitBtn.disabled) submitBtn.innerHTML = M[l].send;
+        if (!gallerySubmitBtn.disabled) gallerySubmitBtn.innerHTML = M[l].galSend;
         updateEmergencyLink();
+        renderGallery();
         renderReviews();
     }
 
@@ -670,6 +882,151 @@
         return `${str} (${num}/5)`;
     }
 
+    function escapeHTML(str) {
+        if (!str) return '';
+        return String(str).replace(/[&<>'"]/g,
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
+    }
+
+    async function uploadImageToImgBB(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        const res = await fetch(`https://api.imgbb.com/1/upload?key=${encodeURIComponent(IMGBB_API_KEY)}`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success || !data.data || !data.data.url) {
+            throw new Error('ImgBB upload failed');
+        }
+        return data.data.url;
+    }
+
+    /* ===== גלריית לפני ואחרי ===== */
+    function renderGallery() {
+        galleryList.innerHTML = '';
+        const selectedFilter = filterGalleryCategory.value;
+
+        const filtered = selectedFilter === 'all'
+            ? allGallery
+            : allGallery.filter(item => item && item.category === selectedFilter);
+
+        if (filtered.length === 0) {
+            galleryList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].galEmpty}</p>`;
+            return;
+        }
+
+        filtered.forEach(item => {
+            if (!item) return;
+            const card = document.createElement('div');
+            card.className = 'review-card';
+
+            const beforeImgs = Array.isArray(item.beforeUrls) ? item.beforeUrls : [];
+            const afterImgs = Array.isArray(item.afterUrls) ? item.afterUrls : [];
+
+            const beforeGrid = beforeImgs.map(url =>
+                `<img src="${escapeHTML(url)}" alt="${M[lang].before}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`
+            ).join('');
+
+            const afterGrid = afterImgs.map(url =>
+                `<img src="${escapeHTML(url)}" alt="${M[lang].after}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`
+            ).join('');
+
+            card.innerHTML = `
+                <div class="review-header">
+                    <span>🛠️ ${escapeHTML(item.title)} <span style="color: #007bff; font-weight: normal;">(${escapeHTML(catLabel(item.category))})</span></span>
+                    <span style="font-size: 11px; color: #888; font-weight: normal;">📅 ${escapeHTML(item.date || '')}</span>
+                </div>
+                <div class="before-after-columns">
+                    <div class="ba-col">
+                        <span class="ba-badge before">${M[lang].before}</span>
+                        <div class="review-images-grid">${beforeGrid}</div>
+                    </div>
+                    <div class="ba-col">
+                        <span class="ba-badge after">${M[lang].after}</span>
+                        <div class="review-images-grid">${afterGrid}</div>
+                    </div>
+                </div>
+            `;
+            galleryList.appendChild(card);
+        });
+    }
+
+    galleryList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].galLoading}</p>`;
+    galleryRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        allGallery = [];
+        if (data) {
+            Object.keys(data).forEach(key => {
+                if (data[key]) {
+                    allGallery.unshift(data[key]);
+                }
+            });
+        }
+        renderGallery();
+    });
+
+    galleryForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const pin = document.getElementById('galleryPin').value.trim();
+        const category = document.getElementById('galleryCategory').value;
+        const title = document.getElementById('galleryTitle').value.trim();
+        const beforeFiles = Array.from(document.getElementById('beforeImages').files || []);
+        const afterFiles = Array.from(document.getElementById('afterImages').files || []);
+
+        if (pin !== ADMIN_GALLERY_PIN) {
+            alert(M[lang].galBadPin);
+            return;
+        }
+        if (!category || !title) {
+            alert(M[lang].fill);
+            return;
+        }
+        if (beforeFiles.length === 0 || afterFiles.length === 0) {
+            alert(M[lang].galNeedImgs);
+            return;
+        }
+        if (beforeFiles.length > 10 || afterFiles.length > 10) {
+            alert(M[lang].max);
+            return;
+        }
+
+        gallerySubmitBtn.disabled = true;
+        gallerySubmitBtn.innerHTML = M[lang].galSending;
+
+        try {
+            const beforeUrls = [];
+            for (const file of beforeFiles) {
+                beforeUrls.push(await uploadImageToImgBB(file));
+            }
+            const afterUrls = [];
+            for (const file of afterFiles) {
+                afterUrls.push(await uploadImageToImgBB(file));
+            }
+
+            const dateStr = new Date().toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'he-IL');
+            await galleryRef.push({
+                category,
+                title,
+                beforeUrls,
+                afterUrls,
+                date: dateStr
+            });
+
+            galleryForm.reset();
+            galleryUploadBox.classList.remove('open');
+        } catch (err) {
+            console.error(err);
+            alert(M[lang].galErr);
+        } finally {
+            gallerySubmitBtn.disabled = false;
+            gallerySubmitBtn.innerHTML = M[lang].galSend;
+        }
+    });
+
+    /* ===== תגובות לקוחות ===== */
     function renderReviews() {
         reviewsList.innerHTML = '';
         const selectedFilter = filterCategory.value;
@@ -691,7 +1048,7 @@
             let imagesHTML = '';
             if (Array.isArray(review.imageUrls) && review.imageUrls.length > 0) {
                 imagesHTML = `<div class="review-images-grid">` +
-                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy">`).join('') +
+                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy" onclick="openLightbox('${escapeHTML(url)}')">`).join('') +
                     `</div>`;
             }
 
@@ -706,27 +1063,6 @@
             `;
             reviewsList.appendChild(card);
         });
-    }
-
-    function escapeHTML(str) {
-        if (!str) return '';
-        return String(str).replace(/[&<>'"]/g,
-            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-        );
-    }
-
-    async function uploadImageToImgBB(file) {
-        const formData = new FormData();
-        formData.append('image', file);
-        const res = await fetch(`https://api.imgbb.com/1/upload?key=${encodeURIComponent(IMGBB_API_KEY)}`, {
-            method: 'POST',
-            body: formData
-        });
-        const data = await res.json();
-        if (!res.ok || !data.success || !data.data || !data.data.url) {
-            throw new Error('ImgBB upload failed');
-        }
-        return data.data.url;
     }
 
     reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].loading}</p>`;
