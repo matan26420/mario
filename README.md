@@ -126,9 +126,6 @@
         a.btn:hover { background: #0056b3; }
 
         /* אזור פעילות ושעות */
-        .status { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 14px; margin: 5px 0 10px; }
-        .status.open { background: #d4f5dd; color: #176b2c; }
-        .status.closed { background: #fde2e2; color: #a12727; }
         .info-box { background: #f4f8ff; border-radius: 8px; padding: 12px 15px; line-height: 1.8; margin-bottom: 20px; }
         .info-box .row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccd; padding: 3px 0; }
         .info-box .row:last-child { border: 0; }
@@ -350,7 +347,6 @@
 
     <h1>M.R. הכל לבית</h1>
     <p data-ru="Комплексный, профессиональный и быстрый сервис от Кирьят-Шмоны до Беэр-Шевы">שירות מקיף, מקצועי ומהיר מקרית שמונה ועד באר שבע</p>
-    <div class="status" id="status"></div>
 
     <!-- כפתורי תקשורת וחתימה -->
     <div class="social-links">
@@ -586,9 +582,6 @@
             fill: 'אנא מלא את כל השדות בטופס בצורה תקינה.',
             max: 'ניתן להעלות עד 10 תמונות בלבד.',
             err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
-            open: '🟢 פתוחים עכשיו',
-            closed: '🔴 סגור כרגע – שלחו הודעה ונחזור אליכם',
-            sat: '🟠 שבת – מקרי חירום בלבד',
             alt: 'תמונת עבודה'
         },
         ru: {
@@ -600,9 +593,6 @@
             fill: 'Пожалуйста, заполните все поля формы.',
             max: 'Можно загрузить не более 10 фото.',
             err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
-            open: '🟢 Сейчас работаем',
-            closed: '🔴 Сейчас закрыто – напишите, и мы свяжемся с вами',
-            sat: '🟠 Суббота – только экстренные случаи',
             alt: 'Фото работы'
         }
     };
@@ -642,7 +632,6 @@
 
         ratingText.innerHTML = M[l].rating(reviewRatingInput.value);
         if (!submitBtn.disabled) submitBtn.innerHTML = M[l].send;
-        updateStatus();
         updateEmergencyLink();
         renderReviews();
     }
@@ -651,26 +640,6 @@
         if (lang !== 'ru') return cat;
         const opt = Array.from(document.getElementById('reviewCategory').options).find(o => o.value === cat);
         return opt && opt.dataset.ru ? opt.dataset.ru : cat;
-    }
-
-    function updateStatus() {
-        const p = new Intl.DateTimeFormat('en-US', {
-            timeZone: 'Asia/Jerusalem',
-            weekday: 'short',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: false
-        }).formatToParts(new Date());
-        const get = t => p.find(x => x.type === t).value;
-        const day = get('weekday');
-        const mins = (parseInt(get('hour'), 10) % 24) * 60 + parseInt(get('minute'), 10);
-        let state = 'closed';
-        if (['Sun', 'Mon', 'Tue', 'Wed', 'Thu'].includes(day) && mins >= 480 && mins < 1200) state = 'open';
-        else if (day === 'Fri' && mins >= 540 && mins < 840) state = 'open';
-        else if (day === 'Sat') state = 'sat';
-        const el = document.getElementById('status');
-        el.textContent = M[lang][state];
-        el.className = 'status ' + (state === 'open' ? 'open' : 'closed');
     }
 
     function paintStars(val) {
@@ -842,8 +811,6 @@
 
     paintStars(5);
     setLang(savedLang);
-    updateStatus();
-    setInterval(updateStatus, 60000);
 </script>
 
 </body>
