@@ -18,7 +18,7 @@
     </div>
     <div class="flex items-center gap-3">
       <span id="user-badge" class="hidden text-sm text-slate-300 bg-slate-800 px-3 py-1 rounded-full"></span>
-      <button id="logout-btn" class="hidden bg-rose-600 hover:bg-rose-500 text-sm px-4 py-1.5 rounded-lg">התנתק</button>
+      <button id="logout-btn" type="button" class="hidden bg-rose-600 hover:bg-rose-500 text-sm px-4 py-1.5 rounded-lg">התנתק</button>
     </div>
   </header>
 
@@ -47,11 +47,14 @@
       <div class="mt-5 text-center text-sm text-slate-300">
         <span id="auth-toggle-text">אין לך חשבון?</span>
         <button type="button" id="auth-toggle-btn" class="text-pink-400 hover:underline font-medium mr-1">הירשם עכשיו</button>
-        <section id="app-section" class="hidden space-y-8">
+      </div>
+    </section>
+
+    <section id="app-section" class="hidden space-y-8">
       <div class="flex gap-2 justify-center">
-        <button data-tab="profile" class="tab-btn px-5 py-2 rounded-xl font-medium bg-pink-600 text-white">הפרופיל שלי</button>
-        <button data-tab="discover" class="tab-btn px-5 py-2 rounded-xl font-medium glass text-slate-300">פרופילים</button>
-        <button data-tab="game" class="tab-btn px-5 py-2 rounded-xl font-medium glass text-slate-300">משחק היכרות</button>
+        <button type="button" data-tab="profile" class="tab-btn px-5 py-2 rounded-xl font-medium bg-pink-600 text-white">הפרופיל שלי</button>
+        <button type="button" data-tab="discover" class="tab-btn px-5 py-2 rounded-xl font-medium glass text-slate-300">פרופילים</button>
+        <button type="button" data-tab="game" class="tab-btn px-5 py-2 rounded-xl font-medium glass text-slate-300">משחק היכרות</button>
       </div>
 
       <div id="tab-profile" class="tab-content max-w-xl mx-auto glass rounded-2xl p-6 shadow-xl">
@@ -91,11 +94,10 @@
         <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 mb-6">
           <p id="game-question" class="text-lg text-pink-200">לחצו על הכפתור לקבלת שאלה!</p>
         </div>
-        <button id="next-question-btn" class="px-8 py-3 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">שאלה חדשה ✨</button>
+        <button type="button" id="next-question-btn" class="px-8 py-3 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">שאלה חדשה ✨</button>
       </div>
     </section>
-  </main>
-  <script type="module">
+  </main><script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
@@ -139,7 +141,11 @@
       $("auth-error").classList.add("hidden");
       const email = $("auth-email").value.trim(), pass = $("auth-password").value;
       try {
-        isSignUp ? await createUserWithEmailAndPassword(auth, email, pass) : await signInWithEmailAndPassword(auth, email, pass);
+        if (isSignUp) {
+          await createUserWithEmailAndPassword(auth, email, pass);
+        } else {
+          await signInWithEmailAndPassword(auth, email, pass);
+        }
       } catch (err) {
         $("auth-error").textContent = "שגיאה: " + err.message;
         $("auth-error").classList.remove("hidden");
@@ -154,39 +160,63 @@
       $("app-section").classList.toggle("hidden", !user);
       $("user-badge").classList.toggle("hidden", !user);
       $("logout-btn").classList.toggle("hidden", !user);
+
+      if (unsubUsers) {
+        unsubUsers();
+        unsubUsers = null;
+      }
+
       if (user) {
         $("user-badge").textContent = user.email;
-        const snap = await getDoc(doc(db, "users", user.uid));
-        if (snap.exists()) {
-          const d = snap.data();
-          $("prof-name").value = d.name || ""; $("prof-age").value = d.age || "";
-          $("prof-city").value = d.city || ""; $("prof-status").value = d.status || "זמין/ה להיכרות 💜";
-          $("prof-bio").value = d.bio || "";
+        try {
+          const snap = await getDoc(doc(db, "users", user.uid));
+          if (snap.exists()) {
+            const d = snap.data();
+            $("prof-name").value = d.name || "";
+            $("prof-age").value = d.age || "";
+            $("prof-city").value = d.city || "";
+            $("prof-status").value = d.status || "זמין/ה להיכרות 💜";
+            $("prof-bio").value = d.bio || "";
+          }
+        } catch (err) {
+          console.error("שגיאה בטעינת פרופיל:", err);
         }
-        unsubUsers = onSnapshot(collection(db, "users"), (snap) => {
-          $("users-count").textContent = `${snap.size} פרופילים`;
-          $("profiles-grid").innerHTML = "";
-          snap.forEach((docSnap) => {
-            const u = docSnap.data();
-            const isMe = u.uid === user.uid;
-            const div = document.createElement("div");
-            div.className = "glass rounded-2xl p-4 shadow-lg";
-            div.innerHTML = `<div class="flex justify-between mb-1"><h3 class="font-bold">${u.name || "משתמש"}, ${u.age || ""}</h3>${isMe ? '<span class="text-xs bg-pink-600 px-2 py-0.5 rounded-full">את/ה</span>' : ""}</div>
-              <p class="text-xs text-indigo-300 mb-2">📍 ${u.city || ""}</p>
-              <span class="text-xs bg-slate-900 text-pink-300 px-2.5 py-1 rounded-full">${u.status || ""}</span>
-              <p class="text-sm text-slate-300 mt-2">${u.bio || ""}</p>`;
-            $("profiles-grid").appendChild(div);
-          });
-        });
-      } else if (unsubUsers) unsubUsers();
+
+        unsubUsers = onSnapshot(
+          collection(db, "users"),
+          (snap) => {
+            $("users-count").textContent = `${snap.size} פרופילים`;
+            $("profiles-grid").innerHTML = "";
+            snap.forEach((docSnap) => {
+              const u = docSnap.data();
+              const isMe = (u.uid || docSnap.id) === user.uid;
+              const div = document.createElement("div");
+              div.className = "glass rounded-2xl p-4 shadow-lg";
+              div.innerHTML = `<div class="flex justify-between mb-1"><h3 class="font-bold">${u.name || "משתמש"}, ${u.age || ""}</h3>${isMe ? '<span class="text-xs bg-pink-600 px-2 py-0.5 rounded-full">את/ה</span>' : ""}</div>
+                <p class="text-xs text-indigo-300 mb-2">📍 ${u.city || ""}</p>
+                <span class="text-xs bg-slate-900 text-pink-300 px-2.5 py-1 rounded-full">${u.status || ""}</span>
+                <p class="text-sm text-slate-300 mt-2">${u.bio || ""}</p>`;
+              $("profiles-grid").appendChild(div);
+            });
+          },
+          (err) => {
+            console.error("שגיאה בהאזנה לפרופילים:", err);
+          }
+        );
+      }
     });
 
     $("profile-form").onsubmit = async (e) => {
       e.preventDefault();
       if (!currentUser) return;
       await setDoc(doc(db, "users", currentUser.uid), {
-        uid: currentUser.uid, name: $("prof-name").value.trim(), age: Number($("prof-age").value),
-        city: $("prof-city").value.trim(), status: $("prof-status").value, bio: $("prof-bio").value.trim(), updatedAt: serverTimestamp()
+        uid: currentUser.uid,
+        name: $("prof-name").value.trim(),
+        age: Number($("prof-age").value),
+        city: $("prof-city").value.trim(),
+        status: $("prof-status").value,
+        bio: $("prof-bio").value.trim(),
+        updatedAt: serverTimestamp()
       }, { merge: true });
       $("save-feedback").classList.remove("opacity-0");
       setTimeout(() => $("save-feedback").classList.add("opacity-0"), 2000);
@@ -194,18 +224,21 @@
 
     document.querySelectorAll(".tab-btn").forEach((btn) => {
       btn.onclick = () => {
-        document.querySelectorAll(".tab-btn").forEach((b) => { b.classList.remove("bg-pink-600", "text-white"); b.classList.add("glass", "text-slate-300"); });
-        btn.classList.add("bg-pink-600", "text-white"); btn.classList.remove("glass", "text-slate-300");
+        document.querySelectorAll(".tab-btn").forEach((b) => {
+          b.classList.remove("bg-pink-600", "text-white");
+          b.classList.add("glass", "text-slate-300");
+        });
+        btn.classList.add("bg-pink-600", "text-white");
+        btn.classList.remove("glass", "text-slate-300");
         document.querySelectorAll(".tab-content").forEach((c) => c.classList.add("hidden"));
         $(`tab-${btn.dataset.tab}`).classList.remove("hidden");
       };
     });
 
     const questions = ["מה הדייט המושלם בעיניך?", "לאן היית טס מחר בבוקר?", "מה הדבר הכי ספונטני שעשית?", "איזו תכונה הכי מושכת אותך?"];
-    $("next-question-btn").onclick = () => $("game-question").textContent = questions[Math.floor(Math.random() * questions.length)];
+    $("next-question-btn").onclick = () => {
+      $("game-question").textContent = questions[Math.floor(Math.random() * questions.length)];
+    };
   </script>
 </body>
 </html>
-      </div>
-    </section>
-    
