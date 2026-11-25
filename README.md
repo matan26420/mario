@@ -28,12 +28,25 @@
       <p class="text-slate-300 text-sm text-center mb-6">התחברו או צרו חשבון אישי מאובטח</p>
       <form id="auth-form" class="space-y-4">
         <input type="email" id="auth-email" required placeholder="אימייל" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-left" />
-        <input type="password" id="auth-password" required minlength="6" placeholder="סיסמה (מינימום 6 תווים)" dir="ltr" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-left" />
+        <div class="relative">
+          <input type="password" id="auth-password" required minlength="6" placeholder="סיסמה (מינימום 6 תווים)" dir="ltr" class="w-full px-4 py-2.5 pl-11 rounded-xl bg-slate-900 border border-slate-700 text-left" />
+          <button type="button" id="toggle-password-btn" aria-label="הצג או הסתר סיסמה" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors">
+            <svg id="eye-open" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <svg id="eye-closed" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+              <line x1="1" y1="1" x2="23" y2="23"></line>
+            </svg>
+          </button>
+        </div>
         <p id="auth-error" class="hidden text-rose-400 text-sm text-center"></p>
         <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">התחברות</button>
       </form>
       <div class="mt-5 text-center text-sm text-slate-300">
         <span id="auth-toggle-text">אין לך חשבון?</span>
+        <button type="button" id="auth-toggle-btn" class="text-pink-400 hover:underline font-medium mr-1">הירשם עכשיו</button>
         <section id="app-section" class="hidden space-y-8">
       <div class="flex gap-2 justify-center">
         <button data-tab="profile" class="tab-btn px-5 py-2 rounded-xl font-medium bg-pink-600 text-white">הפרופיל שלי</button>
@@ -103,6 +116,14 @@
 
     let isSignUp = false, currentUser = null, unsubUsers = null;
     const $ = (id) => document.getElementById(id);
+
+    $("toggle-password-btn").onclick = () => {
+      const input = $("auth-password");
+      const show = input.type === "password";
+      input.type = show ? "text" : "password";
+      $("eye-open").classList.toggle("hidden", show);
+      $("eye-closed").classList.toggle("hidden", !show);
+    };
 
     $("auth-toggle-btn").onclick = () => {
       isSignUp = !isSignUp;
@@ -185,6 +206,6 @@
   </script>
 </body>
 </html>
-        <button id="auth-toggle-btn" class="text-pink-400 font-semibold mr-1">הירשם עכשיו</button>
       </div>
     </section>
+    
