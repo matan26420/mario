@@ -101,7 +101,10 @@
           <div class="flex items-center gap-2">
             <span id="following-count" class="text-sm bg-pink-600/30 border border-pink-500/40 text-pink-200 px-3 py-1 rounded-full">עוקב אחרי: 0</span>
             <span id="users-count" class="text-sm glass px-3 py-1 rounded-full">טוען...</span>
-          </div><div id="tab-games" class="tab-content hidden space-y-6">
+          </div>
+        </div>
+        <div id="profiles-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div><div id="tab-games" class="tab-content hidden space-y-6">
         <div class="text-center">
           <h2 class="text-2xl font-bold mb-2">🎮 עמודת המשחקים של TopLove</h2>
           <p class="text-slate-300 text-sm">בחר משחק מתוך העמודות שלמטה ושחק בכיף</p>
@@ -564,6 +567,3 @@
   </script>
 </body>
 </html>
-        </div>
-        <div id="profiles-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-      </div>
