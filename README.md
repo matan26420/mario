@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.R הכול השירותים לבית</title>
+  <style>
+    .mr-title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin: 20px 0;
+      background: linear-gradient(90deg, #ff512f, #dd2476, #00c6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.R. הכל לבית</title>
