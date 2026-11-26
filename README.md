@@ -277,26 +277,47 @@
         </div>
       </div>
     </section>
-  </main><script>
-    const $ = (id) => document.getElementById(id);
+  </main><script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-analytics.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      setDoc,
+      addDoc,
+      onSnapshot,
+      query,
+      orderBy,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-    const me = {
-      name: "משתמש",
-      gender: "זכר",
-      age: 18,
-      city: "ישראל",
-      bio: "",
-      avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove"
+    const firebaseConfig = {
+      apiKey: "AIzaSyDU1U8pC_xrEh6Kl0yyn4p20w5jzW7bWgI",
+      authDomain: "toplove-il.firebaseapp.com",
+      projectId: "toplove-il",
+      storageBucket: "toplove-il.firebasestorage.app",
+      messagingSenderId: "143390156671",
+      appId: "1:143390156671:web:f7b74f1d5d815277f75c4a",
+      measurementId: "G-VNTDRK1SVV"
     };
 
+    const app = initializeApp(firebaseConfig);
+    if (location.protocol !== "file:") getAnalytics(app);
+    const db = getFirestore(app);
+
+    const $ = (id) => document.getElementById(id);
+    const me = { name: "משתמש", gender: "זכר", age: 18, city: "ישראל", bio: "", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove" };
+    let currentUserKey = "guest_user";
     let vipActiveUntil = 0;
-    const rooms = [
-      { id: "r-music", topic: "מוזיקה והופעות", type: "free", msgs: [] },
-      { id: "r-travel", topic: "טיולים וסופ״ש", type: "free", msgs: [] },
-      { id: "r-games", topic: "משחקי חברה וצחוק", type: "free", msgs: [] },
-      { id: "r-vip-1", topic: "טרקלין VIP פרטי", type: "vip", msgs: [] }
+    let activeRoomId = "r-music";
+    let unsubMsgs = null;
+    const localRooms = [
+      { id: "r-music", topic: "מוזיקה והופעות", type: "free" },
+      { id: "r-travel", topic: "טיולים וסופ״ש", type: "free" },
+      { id: "r-games", topic: "משחקי חברה וצחוק", type: "free" },
+      { id: "r-vip-1", topic: "טרקלין VIP פרטי", type: "vip" }
     ];
-    let activeRoomId = rooms[0].id;
 
     function openApp() {
       $("auth-section").classList.add("hidden");
@@ -311,17 +332,20 @@
       $("auth-password").type = $("auth-password").type === "password" ? "text" : "password";
     };
 
-    $("auth-form").onsubmit = (e) => {
+    $("auth-form").onsubmit = async (e) => {
       e.preventDefault();
+      const email = $("auth-email").value.trim();
       const age = Number($("auth-age").value);
       if (!age || age < 18) {
-        $("auth-error").textContent = "ההרשמה והכניסה מותרות מגיל 18 ומעלה בלבד.";
+        $("auth-error").textContent = "הרשמה וכניסה מותרים מגיל 18 ומעלה בלבד.";
         $("auth-error").classList.remove("hidden");
         return;
       }
       $("auth-error").classList.add("hidden");
       me.age = age;
       $("prof-age").value = age;
+      currentUserKey = email.replace(/[^a-zA-Z0-9_-]/g, "_") || "user_18";
+      try { await setDoc(doc(db, "users", currentUserKey), { email, age, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
       openApp();
     };
 
@@ -343,12 +367,11 @@
       rd.onload = () => { me.avatar = String(rd.result); $("prof-avatar-preview").src = me.avatar; };
       rd.readAsDataURL(f);
     };
-
     $("prof-avatar-url").oninput = (e) => {
       if (e.target.value.trim()) { me.avatar = e.target.value.trim(); $("prof-avatar-preview").src = me.avatar; }
     };
 
-    $("profile-form").onsubmit = (e) => {
+    $("profile-form").onsubmit = async (e) => {
       e.preventDefault();
       const age = Number($("prof-age").value);
       if (!age || age < 18) {
@@ -363,66 +386,78 @@
       me.city = $("prof-city").value.trim() || me.city;
       me.bio = $("prof-bio").value.trim();
       $("user-badge").textContent = `${me.name} • ${me.gender}, ${me.age}`;
+      try { await setDoc(doc(db, "users", currentUserKey), { ...me, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
       $("save-feedback").classList.remove("opacity-0");
       setTimeout(() => $("save-feedback").classList.add("opacity-0"), 1500);
-    };function hasVipPass() {
-      return Date.now() < vipActiveUntil;
+    };function hasVipPass() { return Date.now() < vipActiveUntil; }
+
+    function listenRoomMessages(roomId, lockedVip) {
+      if (unsubMsgs) { unsubMsgs(); unsubMsgs = null; }
+      if (lockedVip) {
+        $("chat-messages").innerHTML = `<p class="text-xs text-amber-300">חדר VIP עולה 5 ש"ח ליום. לחץ על "שלם 5 ש"ח ליום עבור VIP" לפתיחה.</p>`;
+        return;
+      }
+      const q = query(collection(db, "rooms", roomId, "messages"), orderBy("createdAt", "asc"));
+      unsubMsgs = onSnapshot(q, (snap) => {
+        const msgs = snap.docs.map((d) => d.data());
+        $("chat-messages").innerHTML = msgs.length
+          ? msgs.map((m) => `<div class="bg-slate-800 px-3 py-2 rounded-xl text-sm"><strong class="text-pink-300">${m.from || "משתמש"}:</strong> ${m.text || ""}</div>`).join("")
+          : `<p class="text-xs text-slate-400">אין עדיין הודעות בחדר הזה.</p>`;
+      });
     }
 
     function renderRooms() {
-      $("rooms-list").innerHTML = rooms.map((r) => {
+      $("rooms-list").innerHTML = localRooms.map((r) => {
         const isVip = r.type === "vip";
         const isAct = r.id === activeRoomId;
-        return `<button type="button" onclick="selectRoom('${r.id}')" class="w-full text-right p-3 rounded-xl border text-xs transition ${isAct ? "bg-pink-600/30 border-pink-400" : "bg-slate-950/70 border-slate-800"}">
+        return `<button type="button" data-select-room="${r.id}" class="w-full text-right p-3 rounded-xl border text-xs transition ${isAct ? "bg-pink-600/30 border-pink-400" : "bg-slate-950/70 border-slate-800"}">
           <div class="font-bold text-sm">${isVip ? "👑 " : "💬 "}${r.topic}</div>
           <div class="mt-0.5 ${isVip ? "text-amber-300" : "text-emerald-300"}">${isVip ? "VIP • 5 ש\"ח ליום" : "חינם"}</div>
         </button>`;
       }).join("");
 
-      const cur = rooms.find((r) => r.id === activeRoomId) || rooms[0];
+      document.querySelectorAll("[data-select-room]").forEach((btn) => {
+        btn.onclick = () => { activeRoomId = btn.dataset.selectRoom; renderRooms(); };
+      });
+
+      const cur = localRooms.find((r) => r.id === activeRoomId) || localRooms[0];
       activeRoomId = cur.id;
       const lockedVip = cur.type === "vip" && !hasVipPass();
       $("active-room-title").textContent = cur.topic;
       $("active-room-meta").textContent = cur.type === "vip"
         ? (hasVipPass() ? "חדר VIP פעיל (שולם 5 ש\"ח ליום)" : "חדר VIP נעול — תשלום 5 ש\"ח ליום")
         : "חדר נושא רגיל — חינם";
-      $("unlock-vip-btn").classList.toggle("hidden", !(cur.type === "vip" && !hasVipPass()));
-
-      $("chat-messages").innerHTML = lockedVip
-        ? `<p class="text-xs text-amber-300">חדר VIP עולה 5 ש"ח ליום. לחץ על "שלם 5 ש"ח ליום עבור VIP" לפתיחה.</p>`
-        : (cur.msgs.length
-            ? cur.msgs.map((m) => `<div class="bg-slate-800 px-3 py-2 rounded-xl text-sm"><strong class="text-pink-300">${m.from}:</strong> ${m.text}</div>`).join("")
-            : `<p class="text-xs text-slate-400">אין עדיין הודעות בנושא "${cur.topic}".</p>`);
+      $("unlock-vip-btn").classList.toggle("hidden", !lockedVip);
+      listenRoomMessages(cur.id, lockedVip);
     }
 
-    window.selectRoom = (id) => { activeRoomId = id; renderRooms(); };
-
-    $("unlock-vip-btn").onclick = () => {
+    $("unlock-vip-btn").onclick = async () => {
       vipActiveUntil = Date.now() + 24 * 60 * 60 * 1000;
+      try { await setDoc(doc(db, "vipPasses", currentUserKey), { priceILS: 5, period: "day", vipActiveUntil, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
       renderRooms();
     };
 
-    $("create-room-form").onsubmit = (e) => {
+    $("create-room-form").onsubmit = async (e) => {
       e.preventDefault();
       const topic = $("new-room-topic").value.trim();
       const type = $("new-room-type").value;
       if (!topic) return;
-      const newRoom = { id: `r-${Date.now()}`, topic, type, msgs: [] };
-      rooms.unshift(newRoom);
-      activeRoomId = newRoom.id;
+      const roomObj = { id: `r-${Date.now()}`, topic, type };
+      localRooms.unshift(roomObj);
+      activeRoomId = roomObj.id;
       $("new-room-topic").value = "";
+      try { await setDoc(doc(db, "rooms", roomObj.id), { ...roomObj, createdAt: serverTimestamp() }, { merge: true }); } catch {}
       renderRooms();
     };
 
-    $("chat-form").onsubmit = (e) => {
+    $("chat-form").onsubmit = async (e) => {
       e.preventDefault();
-      const cur = rooms.find((r) => r.id === activeRoomId);
+      const cur = localRooms.find((r) => r.id === activeRoomId);
       if (!cur || (cur.type === "vip" && !hasVipPass())) return;
       const txt = $("chat-input").value.trim();
       if (!txt) return;
-      cur.msgs.push({ from: me.name, text: txt });
       $("chat-input").value = "";
-      renderRooms();
+      await addDoc(collection(db, "rooms", cur.id, "messages"), { from: me.name, text: txt, createdAt: serverTimestamp() });
     };
 
     const mp = { active: "p1", waiting: "p1", rps: { p1: null, p2: null } };
@@ -431,7 +466,9 @@
       $("multiplayer-status").textContent = `ממתין לפעולה של ${who} (אסור לשחק לבד)`;
     }
     $("game-profile-select").onchange = (e) => { mp.active = e.target.value; updateMpBanner(); };
-    updateMpBanner();document.querySelectorAll(".game-tab-btn").forEach((btn) => {
+    updateMpBanner();
+
+    document.querySelectorAll(".game-tab-btn").forEach((btn) => {
       btn.onclick = () => {
         document.querySelectorAll(".game-tab-btn").forEach((b) => { b.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300"; });
         btn.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold bg-pink-600";
@@ -443,16 +480,11 @@
     const rpsMap = { rock: "🪨 אבן", paper: "📄 נייר", scissors: "✂️ מספריים" };
     document.querySelectorAll(".rps-choice").forEach((b) => {
       b.onclick = () => {
-        if (mp.active !== mp.waiting) {
-          $("rps-result").textContent = `עכשיו מחכים ל${mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'"} שילחץ!`;
-          return;
-        }
+        if (mp.active !== mp.waiting) { $("rps-result").textContent = `עכשיו מחכים ל${mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'"} שילחץ!`; return; }
         mp.rps[mp.active] = b.dataset.rps;
         if (!mp.rps.p1 || !mp.rps.p2) {
-          mp.waiting = mp.active === "p1" ? "p2" : "p1";
-          updateMpBanner();
-          $("rps-result").textContent = "הבחירה נשמרה! ממתין לפרופיל השני שילחץ...";
-          return;
+          mp.waiting = mp.active === "p1" ? "p2" : "p1"; updateMpBanner();
+          $("rps-result").textContent = "הבחירה נשמרה! ממתין לפרופיל השני שילחץ..."; return;
         }
         $("rps-result").textContent = `פרופיל א': ${rpsMap[mp.rps.p1]} | פרופיל ב': ${rpsMap[mp.rps.p2]}`;
         mp.rps = { p1: null, p2: null }; mp.waiting = "p1"; updateMpBanner();
@@ -468,9 +500,7 @@
       if (mp.active !== mp.waiting) { $("tod-text").textContent = "ממתין לשחקן השני בתור..."; return; }
       $("tod-text").textContent = "⚡ חובה: פתח חדר שיחה חדש בנושא שמעניין אותך!";
       mp.waiting = mp.waiting === "p1" ? "p2" : "p1"; updateMpBanner();
-    };
-
-    let bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 })), bgSel = null;
+    };let bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 })), bgSel = null;
     function initBg() {
       bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 }));
       bgBoard[0] = { c: "pink", n: 2 }; bgBoard[11] = { c: "pink", n: 5 };
