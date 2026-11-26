@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -43,7 +43,7 @@
       <span class="text-2xl">💜</span>
       <h1 class="text-xl font-bold bg-gradient-to-l from-pink-400 to-indigo-400 bg-clip-text text-transparent">TopLove IL</h1>
       <span class="text-xs bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 px-2.5 py-0.5 rounded-full">
-        האתר חינם • VIP 5 ש"ח/יום
+        חינם לגמרי • 18+
       </span>
     </div>
     <div class="flex items-center gap-3">
@@ -53,7 +53,7 @@
   </header><main class="max-w-6xl mx-auto px-4 py-8 space-y-6">
     <section id="auth-section" class="max-w-md mx-auto glass rounded-2xl p-8 shadow-2xl mt-6">
       <h2 class="text-2xl font-bold text-center mb-2">ברוכים הבאים ל-TopLove IL</h2>
-      <p class="text-slate-300 text-sm text-center mb-6">הכניסה וההרשמה חינם לגילאי 18 ומעלה בלבד</p>
+      <p class="text-slate-300 text-sm text-center mb-6">כניסה והרשמה חינם לגילאי 18 ומעלה בלבד</p>
       <form id="auth-form" class="space-y-4">
         <input type="email" id="auth-email" required placeholder="אימייל" dir="ltr"
           class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-left" />
@@ -66,14 +66,15 @@
         </div>
         <p id="auth-error" class="text-rose-400 text-xs hidden"></p>
         <button type="submit" class="w-full py-3 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
-          כניסה / הרשמה (חינם)
+          כניסה / הרשמה
         </button>
       </form>
     </section><section id="app-section" class="hidden space-y-6">
       <div class="flex flex-wrap gap-2 justify-center">
         <button type="button" data-tab="profile" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-pink-600 text-white">1. הפרופיל שלי</button>
-        <button type="button" data-tab="chat" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">2. חדרי שיחה ו-VIP 💬</button>
-        <button type="button" data-tab="games" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">3. 10 משחקים 🎮</button>
+        <button type="button" data-tab="users" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">2. משתמשים מחוברים 👥</button>
+        <button type="button" data-tab="chat" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">3. חדרי שיחה 💬</button>
+        <button type="button" data-tab="games" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">4. 10 משחקים ושולחנות 🎮</button>
       </div>
 
       <div id="tab-profile" class="tab-content max-w-2xl mx-auto glass rounded-2xl p-6 shadow-xl">
@@ -116,37 +117,34 @@
             <button type="submit" class="px-6 py-2.5 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">שמור פרופיל</button>
           </div>
         </form>
+      </div>
+
+      <div id="tab-users" class="tab-content hidden max-w-4xl mx-auto glass rounded-2xl p-6 space-y-4">
+        <h2 class="text-xl font-bold">👥 משתמשים אמיתיים במערכת</h2>
+        <p class="text-xs text-slate-300">כאן מופיעים משתמשים שנרשמו למערכת. אפשר לפתוח שיחה אישית או להזמין למשחק.</p>
+        <div id="real-users-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
       </div><div id="tab-chat" class="tab-content hidden max-w-5xl mx-auto glass rounded-2xl p-6 space-y-5">
         <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4 space-y-3">
           <h3 class="text-sm font-bold text-pink-300">➕ פתיחת חדר שיחה חדש לפי נושא</h3>
-          <form id="create-room-form" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <form id="create-room-form" class="flex flex-col sm:flex-row gap-2.5">
             <input type="text" id="new-room-topic" required placeholder="נושא השיחה (למשל: מוזיקה, טיולים, סרטים)"
-              class="sm:col-span-2 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm" />
-            <select id="new-room-type" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm">
-              <option value="free">חדר נושא רגיל (חינם)</option>
-              <option value="vip">חדר VIP (5 ש"ח ליום)</option>
-            </select>
-            <button type="submit" class="sm:col-span-3 py-2 rounded-xl text-sm font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
+              class="flex-1 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm" />
+            <button type="submit" class="px-5 py-2 rounded-xl text-sm font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
               פתח חדר שיחה
             </button>
           </form>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          <div class="space-y-3">
-            <h3 class="text-sm font-bold text-slate-200">🗂️ חדרים קיימים (לפי נושאי שיחה)</h3>
+          <div class="space-y-2">
+            <h3 class="text-sm font-bold text-slate-200">🗂️ חדרים לפי נושאי שיחה</h3>
             <div id="rooms-list" class="space-y-2 max-h-80 overflow-y-auto"></div>
           </div>
 
           <div class="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between min-h-[340px] space-y-3">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
-              <div>
-                <h3 id="active-room-title" class="font-bold text-base">בחר חדר</h3>
-                <p id="active-room-meta" class="text-xs text-slate-400"></p>
-              </div>
-              <button type="button" id="unlock-vip-btn" class="hidden px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950">
-                שלם 5 ש"ח ליום עבור VIP
-              </button>
+            <div class="border-b border-white/10 pb-2">
+              <h3 id="active-room-title" class="font-bold text-base">בחר חדר</h3>
+              <p id="active-room-meta" class="text-xs text-slate-400">חדר שיחה פתוח</p>
             </div>
 
             <div id="chat-messages" class="space-y-2 max-h-56 overflow-y-auto py-1"></div>
@@ -159,52 +157,67 @@
           </div>
         </div>
       </div><div id="tab-games" class="tab-content hidden space-y-6">
-        <div class="glass rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3 border border-pink-500/30">
-          <div class="flex items-center gap-2 text-xs sm:text-sm">
-            <label for="game-profile-select" class="text-slate-300">פרופיל פעיל:</label>
-            <select id="game-profile-select" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 font-semibold">
-              <option value="p1">פרופיל א' (שחקן 1)</option>
-              <option value="p2">פרופיל ב' (שחקן 2)</option>
-            </select>
+        <div class="glass rounded-2xl p-4 space-y-3 border border-pink-500/30">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h3 class="text-base font-bold">🪑 שולחנות פעילים של משתמשים במשחק הנבחר</h3>
+              <p class="text-xs text-slate-300">בחר שולחן של משתמש קיים כדי להיכנס אליו, או פתח שולחן משלך שמחכה למשתמש אחר</p>
+            </div>
+            <button type="button" id="create-my-table-btn" class="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-600 hover:bg-emerald-500">
+              + פתח שולחן שלי במשחק זה
+            </button>
           </div>
-          <span id="multiplayer-status" class="text-xs sm:text-sm font-semibold text-amber-200 bg-amber-500/20 border border-amber-400/40 px-3.5 py-1.5 rounded-full">
-            ברירת מחדל: ממתין לפרופיל א' — אסור לשחק לבד
-          </span>
+
+          <div id="game-tables-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5"></div>
+
+          <div class="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <span id="selected-table-info" class="text-pink-200 font-semibold">לא נבחר שולחן עדיין</span>
+            <span id="turn-lock-banner" class="text-amber-200 bg-amber-500/20 border border-amber-400/40 px-3 py-1 rounded-full">
+              ממתין למשתמש אחר
+            </span>
+          </div>
         </div>
 
         <div class="flex flex-wrap gap-2 justify-center">
-          <button type="button" data-game="rps" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold bg-pink-600">1. אבן נייר מספריים</button>
-          <button type="button" data-game="tod" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">2. אמת או חובה</button>
-          <button type="button" data-game="backgammon" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">3. שש בש</button>
-          <button type="button" data-game="chess" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">4. שחמט</button>
-          <button type="button" data-game="trivia" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">5. טריוויה</button>
-          <button type="button" data-game="memory" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">6. זיכרון</button>
-          <button type="button" data-game="number" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">7. ניחוש מספר</button>
-          <button type="button" data-game="ttt" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">8. איקס עיגול</button>
+          <button type="button" data-game="ttt" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold bg-pink-600">1. איקס עיגול</button>
+          <button type="button" data-game="rps" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">2. אבן נייר מספריים</button>
+          <button type="button" data-game="tod" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">3. אמת או חובה</button>
+          <button type="button" data-game="backgammon" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">4. שש בש</button>
+          <button type="button" data-game="chess" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">5. שחמט</button>
+          <button type="button" data-game="trivia" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">6. טריוויה</button>
+          <button type="button" data-game="memory" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">7. זיכרון</button>
+          <button type="button" data-game="number" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">8. ניחוש מספר</button>
           <button type="button" data-game="romance" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">9. פתיחה</button>
           <button type="button" data-game="tap" class="game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300">10. מהירות</button>
+        </div><div id="game-ttt" class="game-panel max-w-sm mx-auto glass rounded-2xl p-6 text-center space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold">🚩 איקס עיגול</h3>
+            <button type="button" id="ttt-reset" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-600">איפוס לוח</button>
+          </div>
+          <div id="ttt-board" class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto"></div>
+          <p id="ttt-status" class="text-sm text-pink-200">בחר שולחן של משתמש כדי לשחק</p>
         </div>
 
-        <div id="game-rps" class="game-panel max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
-          <h3 class="text-xl font-bold">✂️ אבן נייר ומספריים (2 שחקנים)</h3>
+        <div id="game-rps" class="game-panel hidden max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
+          <h3 class="text-xl font-bold">✂️ אבן נייר ומספריים</h3>
           <div class="flex justify-center gap-3">
             <button type="button" data-rps="rock" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">🪨 אבן</button>
             <button type="button" data-rps="paper" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">📄 נייר</button>
             <button type="button" data-rps="scissors" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">✂️ מספריים</button>
           </div>
-          <p id="rps-result" class="text-sm text-pink-200 bg-slate-900 p-4 rounded-xl">
-            פרופיל א' לוחץ ראשון, ואז מחכים לפרופיל ב' שילחץ
-          </p>
+          <p id="rps-result" class="text-sm text-pink-200 bg-slate-900 p-4 rounded-xl">בחר שולחן של משתמש כדי לשחק</p>
         </div>
 
         <div id="game-tod" class="game-panel hidden max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
-          <h3 class="text-xl font-bold">🔥 אמת או חובה (תור בין 2 שחקנים)</h3>
+          <h3 class="text-xl font-bold">🔥 אמת או חובה</h3>
           <div class="flex justify-center gap-3">
             <button type="button" id="btn-truth" class="px-6 py-2.5 rounded-xl font-semibold bg-indigo-600">אמת 💭</button>
             <button type="button" id="btn-dare" class="px-6 py-2.5 rounded-xl font-semibold bg-pink-600">חובה ⚡</button>
           </div>
-          <p id="tod-text" class="text-base text-pink-200 bg-slate-900 p-4 rounded-xl">ממתין לשחקן הפעיל ללחוץ...</p>
-        </div><div id="game-backgammon" class="game-panel hidden max-w-4xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
+          <p id="tod-text" class="text-base text-pink-200 bg-slate-900 p-4 rounded-xl">בחר שולחן של משתמש כדי לשחק</p>
+        </div>
+
+        <div id="game-backgammon" class="game-panel hidden max-w-4xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-xl font-bold">🎲 שש בש (24 נקודות)</h3>
             <div class="flex gap-2">
@@ -218,9 +231,7 @@
             <div class="h-2 rounded-full bg-amber-900"></div>
             <div id="bg-bottom-row" class="grid grid-cols-6 sm:grid-cols-12 gap-1"></div>
           </div>
-        </div>
-
-        <div id="game-chess" class="game-panel hidden max-w-lg mx-auto glass rounded-2xl p-6 text-center space-y-4">
+        </div><div id="game-chess" class="game-panel hidden max-w-lg mx-auto glass rounded-2xl p-6 text-center space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-xl font-bold">♟️ שחמט</h3>
             <button type="button" id="chess-reset" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-600">אפס לוח</button>
@@ -243,22 +254,15 @@
           </div>
           <div id="memory-grid" class="grid grid-cols-4 gap-2"></div>
           <p id="memory-status" class="text-sm text-pink-200"></p>
-        </div><div id="game-number" class="game-panel hidden max-w-md mx-auto glass rounded-2xl p-6 text-center space-y-4">
+        </div>
+
+        <div id="game-number" class="game-panel hidden max-w-md mx-auto glass rounded-2xl p-6 text-center space-y-4">
           <h3 class="text-xl font-bold">⭐ ניחוש מספר (1–20)</h3>
           <div class="flex justify-center gap-2">
             <input type="number" id="num-input" min="1" max="20" class="w-24 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-center" />
             <button type="button" id="num-check" class="px-5 py-2 rounded-xl font-semibold bg-pink-600">בדוק</button>
           </div>
           <p id="num-hint" class="text-sm text-pink-200"></p>
-        </div>
-
-        <div id="game-ttt" class="game-panel hidden max-w-sm mx-auto glass rounded-2xl p-6 text-center space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold">🚩 איקס עיגול</h3>
-            <button type="button" id="ttt-reset" class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-600">חדש</button>
-          </div>
-          <div id="ttt-board" class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto"></div>
-          <p id="ttt-status" class="text-sm text-pink-200">תור: ❌</p>
         </div>
 
         <div id="game-romance" class="game-panel hidden max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
@@ -281,15 +285,8 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-analytics.js";
     import {
-      getFirestore,
-      collection,
-      doc,
-      setDoc,
-      addDoc,
-      onSnapshot,
-      query,
-      orderBy,
-      serverTimestamp
+      getFirestore, collection, doc, setDoc, addDoc, updateDoc,
+      onSnapshot, query, orderBy, serverTimestamp
     } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -307,25 +304,43 @@
     const db = getFirestore(app);
 
     const $ = (id) => document.getElementById(id);
-    const me = { name: "משתמש", gender: "זכר", age: 18, city: "ישראל", bio: "", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove" };
-    let currentUserKey = "guest_user";
-    let vipActiveUntil = 0;
-    let activeRoomId = "r-music";
-    let unsubMsgs = null;
-    const localRooms = [
-      { id: "r-music", topic: "מוזיקה והופעות", type: "free" },
-      { id: "r-travel", topic: "טיולים וסופ״ש", type: "free" },
-      { id: "r-games", topic: "משחקי חברה וצחוק", type: "free" },
-      { id: "r-vip-1", topic: "טרקלין VIP פרטי", type: "vip" }
+    const me = { uid: "", email: "", name: "משתמש", gender: "זכר", age: 18, city: "ישראל", bio: "", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove" };
+    const chatRooms = [
+      { id: "r-music", topic: "מוזיקה והופעות" },
+      { id: "r-travel", topic: "טיולים וסופ״ש" },
+      { id: "r-games", topic: "משחקים וצחוק" }
     ];
+    let activeRoomId = chatRooms[0].id;
+    let unsubMsgs = null;
+    let allUsers = [];
 
-    function openApp() {
+    function switchTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach((b) => {
+        b.className = b.dataset.tab === tabName
+          ? "tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-pink-600 text-white"
+          : "tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300";
+      });
+      document.querySelectorAll(".tab-content").forEach((c) => c.classList.add("hidden"));
+      $(`tab-${tabName}`).classList.remove("hidden");
+    }
+
+    function openApp(session) {
+      Object.assign(me, session);
       $("auth-section").classList.add("hidden");
       $("app-section").classList.remove("hidden");
       $("user-badge").classList.remove("hidden");
       $("logout-btn").classList.remove("hidden");
       $("user-badge").textContent = `${me.name} • ${me.gender}, ${me.age}`;
+      $("prof-name").value = me.name;
+      $("prof-gender").value = me.gender;
+      $("prof-age").value = me.age;
+      $("prof-city").value = me.city;
+      $("prof-bio").value = me.bio;
+      $("prof-avatar-preview").src = me.avatar;
+      switchTab("profile");
       renderRooms();
+      subscribeUsers();
+      subscribeGameTables();
     }
 
     $("toggle-password-btn").onclick = () => {
@@ -334,30 +349,28 @@
 
     $("auth-form").onsubmit = async (e) => {
       e.preventDefault();
-      const email = $("auth-email").value.trim();
+      const email = $("auth-email").value.trim().toLowerCase();
       const age = Number($("auth-age").value);
       if (!age || age < 18) {
-        $("auth-error").textContent = "הרשמה וכניסה מותרים מגיל 18 ומעלה בלבד.";
+        $("auth-error").textContent = "כניסה והרשמה מותרים מגיל 18 ומעלה בלבד.";
         $("auth-error").classList.remove("hidden");
         return;
       }
       $("auth-error").classList.add("hidden");
-      me.age = age;
-      $("prof-age").value = age;
-      currentUserKey = email.replace(/[^a-zA-Z0-9_-]/g, "_") || "user_18";
-      try { await setDoc(doc(db, "users", currentUserKey), { email, age, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
-      openApp();
+      const uid = "u_" + email.replace(/[^a-z0-9]/g, "_");
+      const session = { uid, email, name: email.split("@")[0] || "משתמש", gender: "זכר", age, city: "ישראל", bio: "", avatar: `https://api.dicebear.com/9.x/avataaars/svg?seed=${encodeURIComponent(uid)}` };
+      localStorage.setItem("toplove_session", JSON.stringify(session));
+      try { await setDoc(doc(db, "users", uid), { ...session, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
+      openApp(session);
     };
 
-    $("logout-btn").onclick = () => location.reload();
+    $("logout-btn").onclick = () => {
+      localStorage.removeItem("toplove_session");
+      location.reload();
+    };
 
     document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.onclick = () => {
-        document.querySelectorAll(".tab-btn").forEach((b) => { b.className = "tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300"; });
-        btn.className = "tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-pink-600 text-white";
-        document.querySelectorAll(".tab-content").forEach((c) => c.classList.add("hidden"));
-        $(`tab-${btn.dataset.tab}`).classList.remove("hidden");
-      };
+      btn.onclick = () => switchTab(btn.dataset.tab);
     });
 
     $("prof-avatar-file").onchange = (e) => {
@@ -385,18 +398,56 @@
       me.age = age;
       me.city = $("prof-city").value.trim() || me.city;
       me.bio = $("prof-bio").value.trim();
+      localStorage.setItem("toplove_session", JSON.stringify(me));
       $("user-badge").textContent = `${me.name} • ${me.gender}, ${me.age}`;
-      try { await setDoc(doc(db, "users", currentUserKey), { ...me, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
+      try { await setDoc(doc(db, "users", me.uid), { ...me, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
       $("save-feedback").classList.remove("opacity-0");
       setTimeout(() => $("save-feedback").classList.add("opacity-0"), 1500);
-    };function hasVipPass() { return Date.now() < vipActiveUntil; }
+    };
 
-    function listenRoomMessages(roomId, lockedVip) {
+    function subscribeUsers() {
+      onSnapshot(collection(db, "users"), (snap) => {
+        allUsers = snap.docs.map((d) => ({ id: d.id, ...d.data() })).filter((u) => u.id !== me.uid);
+        $("real-users-grid").innerHTML = allUsers.length
+          ? allUsers.map((u) => `
+              <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4 flex flex-col justify-between gap-3">
+                <div class="flex items-center gap-3">
+                  <img src="${u.avatar || "https://api.dicebear.com/9.x/avataaars/svg?seed=" + u.id}" alt="" class="w-12 h-12 rounded-full object-cover border border-pink-500" />
+                  <div>
+                    <div class="font-bold text-sm">${u.name || "משתמש"}</div>
+                    <div class="text-xs text-slate-300">${u.gender || ""} • גיל ${u.age || 18} • ${u.city || ""}</div>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-400">${u.bio || "אין תיאור עדיין"}</p>
+                <div class="flex gap-2">
+                  <button type="button" data-dm-user="${u.id}" class="flex-1 py-1.5 rounded-lg text-xs font-semibold bg-pink-600">שיחה</button>
+                  <button type="button" data-invite-user="${u.id}" class="flex-1 py-1.5 rounded-lg text-xs font-semibold bg-indigo-600">שולחן משחק</button>
+                </div>
+              </div>
+            `).join("")
+          : `<p class="text-xs text-slate-400 col-span-full">עדיין אין משתמשים אחרים רשומים במערכת.</p>`;
+
+        document.querySelectorAll("[data-dm-user]").forEach((btn) => {
+          btn.onclick = () => {
+            const other = allUsers.find((x) => x.id === btn.dataset.dmUser);
+            if (!other) return;
+            const dmId = "dm_" + [me.uid, other.id].sort().join("_");
+            if (!chatRooms.some((r) => r.id === dmId)) chatRooms.unshift({ id: dmId, topic: `שיחה עם ${other.name}` });
+            activeRoomId = dmId;
+            switchTab("chat");
+            renderRooms();
+          };
+        });
+
+        document.querySelectorAll("[data-invite-user]").forEach(() => {
+          // מעבר ללשונית המשחקים לבחירת או פתיחת שולחן מול משתמש אחר
+        });
+        document.querySelectorAll("[data-invite-user]").forEach((btn) => {
+          btn.onclick = () => switchTab("games");
+        });
+      });
+    }function listenMsgs(roomId) {
       if (unsubMsgs) { unsubMsgs(); unsubMsgs = null; }
-      if (lockedVip) {
-        $("chat-messages").innerHTML = `<p class="text-xs text-amber-300">חדר VIP עולה 5 ש"ח ליום. לחץ על "שלם 5 ש"ח ליום עבור VIP" לפתיחה.</p>`;
-        return;
-      }
       const q = query(collection(db, "rooms", roomId, "messages"), orderBy("createdAt", "asc"));
       unsubMsgs = onSnapshot(q, (snap) => {
         const msgs = snap.docs.map((d) => d.data());
@@ -407,100 +458,189 @@
     }
 
     function renderRooms() {
-      $("rooms-list").innerHTML = localRooms.map((r) => {
-        const isVip = r.type === "vip";
-        const isAct = r.id === activeRoomId;
-        return `<button type="button" data-select-room="${r.id}" class="w-full text-right p-3 rounded-xl border text-xs transition ${isAct ? "bg-pink-600/30 border-pink-400" : "bg-slate-950/70 border-slate-800"}">
-          <div class="font-bold text-sm">${isVip ? "👑 " : "💬 "}${r.topic}</div>
-          <div class="mt-0.5 ${isVip ? "text-amber-300" : "text-emerald-300"}">${isVip ? "VIP • 5 ש\"ח ליום" : "חינם"}</div>
-        </button>`;
-      }).join("");
-
-      document.querySelectorAll("[data-select-room]").forEach((btn) => {
-        btn.onclick = () => { activeRoomId = btn.dataset.selectRoom; renderRooms(); };
+      $("rooms-list").innerHTML = chatRooms.map((r) => `
+        <button type="button" data-room="${r.id}" class="w-full text-right p-3 rounded-xl border text-xs ${r.id === activeRoomId ? "bg-pink-600/30 border-pink-400" : "bg-slate-950/70 border-slate-800"}">
+          💬 ${r.topic}
+        </button>
+      `).join("");
+      document.querySelectorAll("[data-room]").forEach((b) => {
+        b.onclick = () => { activeRoomId = b.dataset.room; renderRooms(); };
       });
-
-      const cur = localRooms.find((r) => r.id === activeRoomId) || localRooms[0];
-      activeRoomId = cur.id;
-      const lockedVip = cur.type === "vip" && !hasVipPass();
+      const cur = chatRooms.find((r) => r.id === activeRoomId) || chatRooms[0];
       $("active-room-title").textContent = cur.topic;
-      $("active-room-meta").textContent = cur.type === "vip"
-        ? (hasVipPass() ? "חדר VIP פעיל (שולם 5 ש\"ח ליום)" : "חדר VIP נעול — תשלום 5 ש\"ח ליום")
-        : "חדר נושא רגיל — חינם";
-      $("unlock-vip-btn").classList.toggle("hidden", !lockedVip);
-      listenRoomMessages(cur.id, lockedVip);
+      listenMsgs(cur.id);
     }
-
-    $("unlock-vip-btn").onclick = async () => {
-      vipActiveUntil = Date.now() + 24 * 60 * 60 * 1000;
-      try { await setDoc(doc(db, "vipPasses", currentUserKey), { priceILS: 5, period: "day", vipActiveUntil, updatedAt: serverTimestamp() }, { merge: true }); } catch {}
-      renderRooms();
-    };
 
     $("create-room-form").onsubmit = async (e) => {
       e.preventDefault();
       const topic = $("new-room-topic").value.trim();
-      const type = $("new-room-type").value;
       if (!topic) return;
-      const roomObj = { id: `r-${Date.now()}`, topic, type };
-      localRooms.unshift(roomObj);
-      activeRoomId = roomObj.id;
+      const room = { id: `r-${Date.now()}`, topic };
+      chatRooms.unshift(room);
+      activeRoomId = room.id;
       $("new-room-topic").value = "";
-      try { await setDoc(doc(db, "rooms", roomObj.id), { ...roomObj, createdAt: serverTimestamp() }, { merge: true }); } catch {}
+      try { await setDoc(doc(db, "rooms", room.id), { ...room, createdAt: serverTimestamp() }, { merge: true }); } catch {}
       renderRooms();
     };
 
     $("chat-form").onsubmit = async (e) => {
       e.preventDefault();
-      const cur = localRooms.find((r) => r.id === activeRoomId);
-      if (!cur || (cur.type === "vip" && !hasVipPass())) return;
       const txt = $("chat-input").value.trim();
       if (!txt) return;
       $("chat-input").value = "";
-      await addDoc(collection(db, "rooms", cur.id, "messages"), { from: me.name, text: txt, createdAt: serverTimestamp() });
+      await addDoc(collection(db, "rooms", activeRoomId, "messages"), { from: me.name, text: txt, createdAt: serverTimestamp() });
     };
 
-    const mp = { active: "p1", waiting: "p1", rps: { p1: null, p2: null } };
-    function updateMpBanner() {
-      const who = mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'";
-      $("multiplayer-status").textContent = `ממתין לפעולה של ${who} (אסור לשחק לבד)`;
-    }
-    $("game-profile-select").onchange = (e) => { mp.active = e.target.value; updateMpBanner(); };
-    updateMpBanner();
+    let currentGameType = "ttt";
+    let allTables = [];
+    let selectedTable = null;
+    let unsubTableDoc = null;
+    let isSubmittingMove = false;
 
-    document.querySelectorAll(".game-tab-btn").forEach((btn) => {
+    function canPlayInSelectedTable() {
+      if (!selectedTable || isSubmittingMove) return false;
+      if (!selectedTable.hostUid || !selectedTable.guestUid) return false;
+      if (selectedTable.hostUid === selectedTable.guestUid) return false;
+      return selectedTable.turnUid === me.uid;
+    }
+
+    function applyTurnLockToBoard() {
+      const allowed = canPlayInSelectedTable();
+      document.querySelectorAll("#ttt-board button, .rps-choice, #btn-truth, #btn-dare").forEach((el) => {
+        el.disabled = !allowed;
+        el.classList.toggle("opacity-50", !allowed);
+      });
+      if (!selectedTable) {
+        $("turn-lock-banner").textContent = "בחר שולחן של משתמש כדי להתחיל";
+      } else if (!selectedTable.guestUid) {
+        $("turn-lock-banner").textContent = "ממתין למשתמש אמיתי נוסף שיצטרף לשולחן...";
+      } else if (allowed) {
+        $("turn-lock-banner").textContent = "תורך לשחק! לחץ והמתן למשתמש השני";
+      } else {
+        $("turn-lock-banner").textContent = "ממתין למשתמש השני שילחץ...";
+      }
+    }
+
+    function renderTablesList() {
+      const filtered = allTables.filter((t) => t.gameType === currentGameType);
+      $("game-tables-list").innerHTML = filtered.length
+        ? filtered.map((t) => {
+            const isSel = selectedTable && selectedTable.id === t.id;
+            const statusText = t.guestUid ? `${t.hostName} מול ${t.guestName}` : `ממתין למשתמש נוסף (שולחן של ${t.hostName})`;
+            return `<button type="button" data-join-table="${t.id}" class="text-right p-3 rounded-xl border text-xs transition ${isSel ? "bg-pink-600/30 border-pink-400" : "bg-slate-900/80 border-slate-700 hover:border-pink-400/60"}">
+              <div class="font-bold text-sm">🪑 שולחן של ${t.hostName || "משתמש"}</div>
+              <div class="text-slate-300 mt-0.5">${statusText}</div>
+            </button>`;
+          }).join("")
+        : `<p class="text-xs text-slate-400 col-span-full">אין שולחנות פתוחים למשחק זה עדיין. פתח שולחן משלך או הצטרף למשתמש אחר.</p>`;
+
+      document.querySelectorAll("[data-join-table]").forEach((btn) => {
+        btn.onclick = () => joinTableById(btn.dataset.joinTable);
+      });
+    }
+
+    function subscribeGameTables() {
+      onSnapshot(collection(db, "gameTables"), (snap) => {
+        allTables = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        renderTablesList();
+      });
+    }
+
+    async function joinTableById(tableId) {
+      const t = allTables.find((x) => x.id === tableId);
+      if (!t) return;
+      if (t.hostUid !== me.uid && !t.guestUid) {
+        await updateDoc(doc(db, "gameTables", t.id), { guestUid: me.uid, guestName: me.name });
+      }
+      if (unsubTableDoc) { unsubTableDoc(); unsubTableDoc = null; }
+      unsubTableDoc = onSnapshot(doc(db, "gameTables", t.id), (snap) => {
+        if (!snap.exists()) return;
+        selectedTable = { id: snap.id, ...snap.data() };
+        isSubmittingMove = false;
+        $("selected-table-info").textContent = `שולחן: ${selectedTable.hostName} ${selectedTable.guestName ? "מול " + selectedTable.guestName : "(ממתין לשחקן שני)"}`;
+        renderTttBoard(selectedTable.board || Array(9).fill(""));
+        applyTurnLockToBoard();
+      });
+    }
+
+    $("create-my-table-btn").onclick = async () => {
+      const id = `tbl_${currentGameType}_${Date.now()}`;
+      const newTbl = {
+        gameType: currentGameType,
+        hostUid: me.uid,
+        hostName: me.name,
+        guestUid: null,
+        guestName: null,
+        turnUid: me.uid,
+        board: Array(9).fill(""),
+        createdAt: serverTimestamp()
+      };
+      await setDoc(doc(db, "gameTables", id), newTbl);
+      await joinTableById(id);
+    };document.querySelectorAll(".game-tab-btn").forEach((btn) => {
       btn.onclick = () => {
+        currentGameType = btn.dataset.game;
         document.querySelectorAll(".game-tab-btn").forEach((b) => { b.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300"; });
         btn.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold bg-pink-600";
         document.querySelectorAll(".game-panel").forEach((p) => p.classList.add("hidden"));
-        $(`game-${btn.dataset.game}`).classList.remove("hidden");
+        $(`game-${currentGameType}`).classList.remove("hidden");
+        renderTablesList();
       };
     });
 
-    const rpsMap = { rock: "🪨 אבן", paper: "📄 נייר", scissors: "✂️ מספריים" };
-    document.querySelectorAll(".rps-choice").forEach((b) => {
-      b.onclick = () => {
-        if (mp.active !== mp.waiting) { $("rps-result").textContent = `עכשיו מחכים ל${mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'"} שילחץ!`; return; }
-        mp.rps[mp.active] = b.dataset.rps;
-        if (!mp.rps.p1 || !mp.rps.p2) {
-          mp.waiting = mp.active === "p1" ? "p2" : "p1"; updateMpBanner();
-          $("rps-result").textContent = "הבחירה נשמרה! ממתין לפרופיל השני שילחץ..."; return;
-        }
-        $("rps-result").textContent = `פרופיל א': ${rpsMap[mp.rps.p1]} | פרופיל ב': ${rpsMap[mp.rps.p2]}`;
-        mp.rps = { p1: null, p2: null }; mp.waiting = "p1"; updateMpBanner();
-      };
-    });
+    function renderTttBoard(board) {
+      $("ttt-board").innerHTML = "";
+      board.forEach((v, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "h-16 rounded-xl bg-slate-800 border border-slate-700 text-2xl font-bold";
+        b.textContent = v === "X" ? "❌" : v === "O" ? "⭕" : "";
+        b.onclick = async () => {
+          if (!canPlayInSelectedTable() || v) return;
+          isSubmittingMove = true;
+          applyTurnLockToBoard();
+          const mark = selectedTable.hostUid === me.uid ? "X" : "O";
+          const nextBoard = [...board];
+          nextBoard[idx] = mark;
+          const nextTurnUid = selectedTable.turnUid === selectedTable.hostUid ? selectedTable.guestUid : selectedTable.hostUid;
+          await updateDoc(doc(db, "gameTables", selectedTable.id), { board: nextBoard, turnUid: nextTurnUid });
+        };
+        $("ttt-board").appendChild(b);
+      });
+      applyTurnLockToBoard();
+    }
+    renderTttBoard(Array(9).fill(""));
 
-    $("btn-truth").onclick = () => {
-      if (mp.active !== mp.waiting) { $("tod-text").textContent = "ממתין לשחקן השני בתור..."; return; }
-      $("tod-text").textContent = "💭 אמת: מה הנושא שהכי מעניין אותך לשיחה?";
-      mp.waiting = mp.waiting === "p1" ? "p2" : "p1"; updateMpBanner();
+    $("ttt-reset").onclick = async () => {
+      if (!selectedTable) return;
+      await updateDoc(doc(db, "gameTables", selectedTable.id), { board: Array(9).fill(""), turnUid: selectedTable.hostUid });
     };
-    $("btn-dare").onclick = () => {
-      if (mp.active !== mp.waiting) { $("tod-text").textContent = "ממתין לשחקן השני בתור..."; return; }
-      $("tod-text").textContent = "⚡ חובה: פתח חדר שיחה חדש בנושא שמעניין אותך!";
-      mp.waiting = mp.waiting === "p1" ? "p2" : "p1"; updateMpBanner();
-    };let bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 })), bgSel = null;
+
+    document.querySelectorAll(".rps-choice").forEach((b) => {
+      b.onclick = async () => {
+        if (!canPlayInSelectedTable()) return;
+        isSubmittingMove = true;
+        applyTurnLockToBoard();
+        const nextTurnUid = selectedTable.turnUid === selectedTable.hostUid ? selectedTable.guestUid : selectedTable.hostUid;
+        await updateDoc(doc(db, "gameTables", selectedTable.id), { lastRpsMove: b.dataset.rps, lastRpsBy: me.name, turnUid: nextTurnUid });
+        $("rps-result").textContent = `${me.name} בחר ${b.dataset.rps} — ממתין למשתמש השני`;
+      };
+    });
+
+    function handleTod(kind) {
+      return async () => {
+        if (!canPlayInSelectedTable()) return;
+        isSubmittingMove = true;
+        applyTurnLockToBoard();
+        const nextTurnUid = selectedTable.turnUid === selectedTable.hostUid ? selectedTable.guestUid : selectedTable.hostUid;
+        await updateDoc(doc(db, "gameTables", selectedTable.id), { lastTod: `${kind}: ${me.name}`, turnUid: nextTurnUid });
+        $("tod-text").textContent = `${kind === "truth" ? "💭 אמת" : "⚡ חובה"} נשלח ע"י ${me.name} — ממתין למשתמש השני`;
+      };
+    }
+    $("btn-truth").onclick = handleTod("truth");
+    $("btn-dare").onclick = handleTod("dare");
+
+    let bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 })), bgSel = null;
     function initBg() {
       bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 }));
       bgBoard[0] = { c: "pink", n: 2 }; bgBoard[11] = { c: "pink", n: 5 };
@@ -553,7 +693,7 @@
         $("chess-board").appendChild(cell);
       }
     }
-    $("chess-reset").onclick = () => { cb = startChess.map((r) => [...r]); cs = null; whiteTurn = true; $("chess-turn").textContent = "תור: לבן"; renderChess(); };
+    $("chess-reset").onclick = () => { cb = startChess.map((r) => [...r]); cs = null; whiteTurn = true; renderChess(); };
     renderChess();
 
     const trList = [{ q: "מה שובר קרח טוב?", opts: ["שיחה מעניינת", "מבחן", "ריב", "שתיקה"], ok: 0 }];
@@ -591,21 +731,18 @@
       else $("num-hint").textContent = g < secret ? "גבוה יותר ⬆️" : "נמוך יותר ⬇️";
     };
 
-    let ttt = Array(9).fill(""), xTurn = true;
-    function renderTtt() {
-      $("ttt-board").innerHTML = "";
-      ttt.forEach((v, i) => {
-        const b = document.createElement("button"); b.type = "button"; b.className = "h-14 rounded-xl bg-slate-800 border border-slate-700 text-xl font-bold"; b.textContent = v;
-        b.onclick = () => { if (!v) { ttt[i] = xTurn ? "❌" : "⭕"; xTurn = !xTurn; $("ttt-status").textContent = `תור: ${xTurn ? "❌" : "⭕"}`; renderTtt(); } };
-        $("ttt-board").appendChild(b);
-      });
-    }
-    $("ttt-reset").onclick = () => { ttt = Array(9).fill(""); xTurn = true; $("ttt-status").textContent = "תור: ❌"; renderTtt(); }; renderTtt();
-
     $("rom-submit").onclick = () => { const v = $("rom-input").value.trim(); if (v) { $("rom-feedback").textContent = `נשמר: "${v}"`; $("rom-input").value = ""; } };
 
     let taps = 0;
     $("tap-btn").onclick = () => { taps++; $("tap-counter").textContent = `לחיצות: ${taps}${taps >= 20 ? " — יעד הושג! 🎉" : ""}`; };
+
+    const savedSession = localStorage.getItem("toplove_session");
+    if (savedSession) {
+      try {
+        const parsed = JSON.parse(savedSession);
+        if (parsed && Number(parsed.age) >= 18) openApp(parsed);
+      } catch {}
+    }
   </script>
 </body>
 </html>
