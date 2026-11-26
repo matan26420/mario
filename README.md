@@ -33,129 +33,142 @@
     }
     .chess-light { background: #e2e8f0; color: #0f172a; }
     .chess-dark { background: #475569; color: #ffffff; }
-    .chess-selected {
-      outline: 3px solid #ec4899;
-      background: #fbcfe8 !important;
-      color: #0f172a !important;
-    }
-    .bg-table {
-      background: radial-gradient(circle at center, #78350f, #451a03);
-      border: 4px solid #92400e;
-      border-radius: 18px;
-    }
+    .chess-selected { outline: 3px solid #ec4899; background: #fbcfe8 !important; color: #0f172a !important; }
+    .bg-table { background: radial-gradient(circle at center, #78350f, #451a03); border: 4px solid #92400e; border-radius: 18px; }
   </style>
 </head>
 <body class="text-white antialiased">
-  <header class="glass sticky top-0 z-50 px-6 py-4 flex items-center justify-between gap-3 shadow-lg">
+  <header class="glass sticky top-0 z-50 px-6 py-4 flex flex-wrap items-center justify-between gap-3 shadow-lg">
     <div class="flex items-center gap-2">
       <span class="text-2xl">💜</span>
-      <h1 class="text-xl font-bold bg-gradient-to-l from-pink-400 to-indigo-400 bg-clip-text text-transparent">
-        TopLove IL
-      </h1>
+      <h1 class="text-xl font-bold bg-gradient-to-l from-pink-400 to-indigo-400 bg-clip-text text-transparent">TopLove IL</h1>
+      <span class="text-xs bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 px-2.5 py-0.5 rounded-full">
+        האתר חינם • VIP 5 ש"ח/יום
+      </span>
     </div>
     <div class="flex items-center gap-3">
       <span id="user-badge" class="hidden text-sm text-slate-200 bg-slate-800 px-3 py-1 rounded-full"></span>
-      <button id="logout-btn" type="button" class="hidden bg-rose-600 hover:bg-rose-500 text-sm px-4 py-1.5 rounded-lg">
-        התנתק
-      </button>
+      <button id="logout-btn" type="button" class="hidden bg-rose-600 hover:bg-rose-500 text-sm px-4 py-1.5 rounded-lg">התנתק</button>
     </div>
   </header><main class="max-w-6xl mx-auto px-4 py-8 space-y-6">
     <section id="auth-section" class="max-w-md mx-auto glass rounded-2xl p-8 shadow-2xl mt-6">
       <h2 class="text-2xl font-bold text-center mb-2">ברוכים הבאים ל-TopLove IL</h2>
-      <p class="text-slate-300 text-sm text-center mb-6">
-        התחבר או הירשם כדי לנהל את הפרופיל שלך, להיכנס לצ'אט ולשחק מול שחקן אחר
-      </p>
+      <p class="text-slate-300 text-sm text-center mb-6">הכניסה וההרשמה חינם לגילאי 18 ומעלה בלבד</p>
       <form id="auth-form" class="space-y-4">
         <input type="email" id="auth-email" required placeholder="אימייל" dir="ltr"
           class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-left" />
+        <input type="number" id="auth-age" required min="18" max="99" placeholder="גיל (18+ בלבד)"
+          class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700" />
         <div class="relative">
           <input type="password" id="auth-password" required minlength="6" placeholder="סיסמה (מינימום 6 תווים)" dir="ltr"
             class="w-full px-4 py-2.5 pl-11 rounded-xl bg-slate-900 border border-slate-700 text-left" />
-          <button type="button" id="toggle-password-btn" aria-label="הצג או הסתר סיסמה"
-            class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">👁️</button>
+          <button type="button" id="toggle-password-btn" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">👁️</button>
         </div>
+        <p id="auth-error" class="text-rose-400 text-xs hidden"></p>
         <button type="submit" class="w-full py-3 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
-          כניסה / הרשמה
+          כניסה / הרשמה (חינם)
         </button>
       </form>
-      <button type="button" id="quick-demo-btn" class="mt-3 w-full py-2.5 rounded-xl font-semibold bg-emerald-600 text-sm">
-        ⚡ כניסה מהירה
-      </button>
     </section><section id="app-section" class="hidden space-y-6">
       <div class="flex flex-wrap gap-2 justify-center">
-        <button type="button" data-tab="profile" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-pink-600 text-white">
-          1. הפרופיל שלי
-        </button>
-        <button type="button" data-tab="chat" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">
-          2. צ'אט וחדרים 💬
-        </button>
-        <button type="button" data-tab="games" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">
-          3. 10 משחקים 🎮
-        </button>
+        <button type="button" data-tab="profile" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold bg-pink-600 text-white">1. הפרופיל שלי</button>
+        <button type="button" data-tab="chat" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">2. חדרי שיחה ו-VIP 💬</button>
+        <button type="button" data-tab="games" class="tab-btn px-4 py-2 rounded-xl text-sm font-semibold glass text-slate-300">3. 10 משחקים 🎮</button>
       </div>
 
       <div id="tab-profile" class="tab-content max-w-2xl mx-auto glass rounded-2xl p-6 shadow-xl">
         <h2 class="text-xl font-bold mb-4">הפרופיל האישי שלי</h2>
         <form id="profile-form" class="space-y-4">
-          <div class="flex items-center gap-4 bg-slate-900/70 p-4 rounded-xl border border-slate-700">
-            <img id="prof-avatar-preview" src="https://api.dicebear.com/9.x/avataaars/svg?seed=User" alt="תמונת פרופיל"
-              class="w-16 h-16 rounded-full object-cover border-2 border-pink-500 bg-slate-800" />
-            <input type="url" id="prof-avatar-url" placeholder="קישור לתמונת פרופיל (https://...)" dir="ltr"
-              class="w-full px-3 py-2 text-sm rounded-lg bg-slate-950 border border-slate-700 text-left" />
+          <div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-900/70 p-4 rounded-xl border border-slate-700">
+            <img id="prof-avatar-preview" src="https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove" alt="תמונת פרופיל"
+              class="w-20 h-20 rounded-full object-cover border-2 border-pink-500 bg-slate-800 shrink-0" />
+            <div class="w-full space-y-2">
+              <label class="block text-xs font-semibold text-pink-300">העלה תמונה מהמחשב או הכנס קישור</label>
+              <input type="file" id="prof-avatar-file" accept="image/*"
+                class="block w-full text-xs text-slate-300 file:ml-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-pink-600 file:text-white" />
+              <input type="url" id="prof-avatar-url" placeholder="קישור לתמונה (https://...)" dir="ltr"
+                class="w-full px-3 py-1.5 text-sm rounded-lg bg-slate-950 border border-slate-700 text-left" />
+            </div>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <input type="text" id="prof-name" required placeholder="שם"
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="prof-name" required placeholder="שם / כינוי"
               class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700" />
-            <input type="number" id="prof-age" min="18" max="99" required placeholder="גיל"
+            <select id="prof-gender" class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700">
+              <option value="זכר">מגדר: זכר</option>
+              <option value="נקבה">מגדר: נקבה</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="number" id="prof-age" min="18" max="99" required value="18" placeholder="גיל (18+)"
               class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700" />
             <input type="text" id="prof-city" required placeholder="עיר"
               class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700" />
           </div>
+
           <textarea id="prof-bio" rows="2" placeholder="קצת עליי..."
             class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700"></textarea>
+
+          <p id="profile-error" class="text-rose-400 text-xs hidden"></p>
           <div class="flex items-center justify-between">
             <span id="save-feedback" class="text-emerald-400 text-sm opacity-0 transition-opacity">✓ נשמר!</span>
-            <button type="submit" class="px-6 py-2.5 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
-              שמור פרופיל
-            </button>
+            <button type="submit" class="px-6 py-2.5 rounded-xl font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">שמור פרופיל</button>
           </div>
         </form>
-      </div><div id="tab-chat" class="tab-content hidden max-w-3xl mx-auto glass rounded-2xl p-6 space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
-          <div>
-            <h2 class="text-xl font-bold">💬 צ'אט חדרים</h2>
-            <p id="chat-room-label" class="text-xs text-pink-300">חדר פעיל: כללי</p>
+      </div><div id="tab-chat" class="tab-content hidden max-w-5xl mx-auto glass rounded-2xl p-6 space-y-5">
+        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4 space-y-3">
+          <h3 class="text-sm font-bold text-pink-300">➕ פתיחת חדר שיחה חדש לפי נושא</h3>
+          <form id="create-room-form" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <input type="text" id="new-room-topic" required placeholder="נושא השיחה (למשל: מוזיקה, טיולים, סרטים)"
+              class="sm:col-span-2 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm" />
+            <select id="new-room-type" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm">
+              <option value="free">חדר נושא רגיל (חינם)</option>
+              <option value="vip">חדר VIP (5 ש"ח ליום)</option>
+            </select>
+            <button type="submit" class="sm:col-span-3 py-2 rounded-xl text-sm font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
+              פתח חדר שיחה
+            </button>
+          </form>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="space-y-3">
+            <h3 class="text-sm font-bold text-slate-200">🗂️ חדרים קיימים (לפי נושאי שיחה)</h3>
+            <div id="rooms-list" class="space-y-2 max-h-80 overflow-y-auto"></div>
           </div>
-          <div class="flex gap-2">
-            <button type="button" data-room="כללי" class="room-btn px-3 py-1 rounded-lg text-xs font-semibold bg-pink-600">
-              חדר כללי
-            </button>
-            <button type="button" data-room="VIP" class="room-btn px-3 py-1 rounded-lg text-xs font-semibold bg-amber-600/30 border border-amber-400/50 text-amber-200">
-              חדר VIP 👑
-            </button>
+
+          <div class="lg:col-span-2 bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between min-h-[340px] space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-2">
+              <div>
+                <h3 id="active-room-title" class="font-bold text-base">בחר חדר</h3>
+                <p id="active-room-meta" class="text-xs text-slate-400"></p>
+              </div>
+              <button type="button" id="unlock-vip-btn" class="hidden px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950">
+                שלם 5 ש"ח ליום עבור VIP
+              </button>
+            </div>
+
+            <div id="chat-messages" class="space-y-2 max-h-56 overflow-y-auto py-1"></div>
+
+            <form id="chat-form" class="flex gap-2 pt-2 border-t border-white/10">
+              <input type="text" id="chat-input" required placeholder="כתוב הודעה בחדר..."
+                class="flex-1 px-4 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm" />
+              <button type="submit" class="px-5 py-2 rounded-xl text-sm font-semibold bg-pink-600">שלח</button>
+            </form>
           </div>
         </div>
-        <div id="chat-messages" class="space-y-2 max-h-72 overflow-y-auto bg-slate-900/70 p-4 rounded-xl border border-slate-800">
-          <p class="text-xs text-slate-400">אין עדיין הודעות בחדר הזה. כתוב הודעה ראשונה!</p>
-        </div>
-        <form id="chat-form" class="flex gap-2">
-          <input type="text" id="chat-input" required placeholder="כתוב הודעה..."
-            class="flex-1 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-sm" />
-          <button type="submit" class="px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-l from-pink-600 to-indigo-600">
-            שלח
-          </button>
-        </form>
       </div><div id="tab-games" class="tab-content hidden space-y-6">
         <div class="glass rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3 border border-pink-500/30">
           <div class="flex items-center gap-2 text-xs sm:text-sm">
-            <label for="active-player-select" class="text-slate-300">פרופיל פעיל כעת:</label>
-            <select id="active-player-select" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 font-semibold">
-              <option value="player1">שחקן 1 (אני)</option>
-              <option value="player2">שחקן 2 (פרופיל אחר)</option>
+            <label for="game-profile-select" class="text-slate-300">פרופיל פעיל:</label>
+            <select id="game-profile-select" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 font-semibold">
+              <option value="p1">פרופיל א' (שחקן 1)</option>
+              <option value="p2">פרופיל ב' (שחקן 2)</option>
             </select>
           </div>
-          <span id="sync-turn-banner" class="text-xs sm:text-sm font-semibold text-amber-200 bg-amber-500/20 border border-amber-400/40 px-3.5 py-1.5 rounded-full">
-            ממתין ללחיצת שחקן 1...
+          <span id="multiplayer-status" class="text-xs sm:text-sm font-semibold text-amber-200 bg-amber-500/20 border border-amber-400/40 px-3.5 py-1.5 rounded-full">
+            ברירת מחדל: ממתין לפרופיל א' — אסור לשחק לבד
           </span>
         </div>
 
@@ -173,24 +186,24 @@
         </div>
 
         <div id="game-rps" class="game-panel max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
-          <h3 class="text-xl font-bold">✂️ אבן נייר ומספריים (המתנה לשחקן השני)</h3>
+          <h3 class="text-xl font-bold">✂️ אבן נייר ומספריים (2 שחקנים)</h3>
           <div class="flex justify-center gap-3">
             <button type="button" data-rps="rock" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">🪨 אבן</button>
             <button type="button" data-rps="paper" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">📄 נייר</button>
             <button type="button" data-rps="scissors" class="rps-choice px-5 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 text-lg">✂️ מספריים</button>
           </div>
           <p id="rps-result" class="text-sm text-pink-200 bg-slate-900 p-4 rounded-xl">
-            שחקן 1 בוחר ראשון, ואז מחכים לשחקן 2 שילחץ על הבחירה שלו
+            פרופיל א' לוחץ ראשון, ואז מחכים לפרופיל ב' שילחץ
           </p>
         </div>
 
         <div id="game-tod" class="game-panel hidden max-w-xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
-          <h3 class="text-xl font-bold">🔥 אמת או חובה</h3>
+          <h3 class="text-xl font-bold">🔥 אמת או חובה (תור בין 2 שחקנים)</h3>
           <div class="flex justify-center gap-3">
             <button type="button" id="btn-truth" class="px-6 py-2.5 rounded-xl font-semibold bg-indigo-600">אמת 💭</button>
             <button type="button" id="btn-dare" class="px-6 py-2.5 rounded-xl font-semibold bg-pink-600">חובה ⚡</button>
           </div>
-          <p id="tod-text" class="text-base text-pink-200 bg-slate-900 p-4 rounded-xl">לחץ על אמת או חובה</p>
+          <p id="tod-text" class="text-base text-pink-200 bg-slate-900 p-4 rounded-xl">ממתין לשחקן הפעיל ללחוץ...</p>
         </div><div id="game-backgammon" class="game-panel hidden max-w-4xl mx-auto glass rounded-2xl p-6 text-center space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="text-xl font-bold">🎲 שש בש (24 נקודות)</h3>
@@ -266,23 +279,52 @@
     </section>
   </main><script>
     const $ = (id) => document.getElementById(id);
-    const me = { name: "משתמש", age: 25, city: "ישראל", avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=User" };
-    const chatRooms = { "כללי": [], "VIP": [] };
-    let currentRoom = "כללי";
 
-    function openMain() {
+    const me = {
+      name: "משתמש",
+      gender: "זכר",
+      age: 18,
+      city: "ישראל",
+      bio: "",
+      avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=TopLove"
+    };
+
+    let vipActiveUntil = 0;
+    const rooms = [
+      { id: "r-music", topic: "מוזיקה והופעות", type: "free", msgs: [] },
+      { id: "r-travel", topic: "טיולים וסופ״ש", type: "free", msgs: [] },
+      { id: "r-games", topic: "משחקי חברה וצחוק", type: "free", msgs: [] },
+      { id: "r-vip-1", topic: "טרקלין VIP פרטי", type: "vip", msgs: [] }
+    ];
+    let activeRoomId = rooms[0].id;
+
+    function openApp() {
       $("auth-section").classList.add("hidden");
       $("app-section").classList.remove("hidden");
       $("user-badge").classList.remove("hidden");
       $("logout-btn").classList.remove("hidden");
-      $("user-badge").textContent = `${me.name}, ${me.age} • ${me.city}`;
+      $("user-badge").textContent = `${me.name} • ${me.gender}, ${me.age}`;
+      renderRooms();
     }
 
     $("toggle-password-btn").onclick = () => {
       $("auth-password").type = $("auth-password").type === "password" ? "text" : "password";
     };
-    $("auth-form").onsubmit = (e) => { e.preventDefault(); openMain(); };
-    $("quick-demo-btn").onclick = openMain;
+
+    $("auth-form").onsubmit = (e) => {
+      e.preventDefault();
+      const age = Number($("auth-age").value);
+      if (!age || age < 18) {
+        $("auth-error").textContent = "ההרשמה והכניסה מותרות מגיל 18 ומעלה בלבד.";
+        $("auth-error").classList.remove("hidden");
+        return;
+      }
+      $("auth-error").classList.add("hidden");
+      me.age = age;
+      $("prof-age").value = age;
+      openApp();
+    };
+
     $("logout-btn").onclick = () => location.reload();
 
     document.querySelectorAll(".tab-btn").forEach((btn) => {
@@ -294,58 +336,102 @@
       };
     });
 
-    $("prof-avatar-url").oninput = (e) => {
-      if (e.target.value.trim()) {
-        me.avatar = e.target.value.trim();
-        $("prof-avatar-preview").src = me.avatar;
-      }
+    $("prof-avatar-file").onchange = (e) => {
+      const f = e.target.files?.[0];
+      if (!f) return;
+      const rd = new FileReader();
+      rd.onload = () => { me.avatar = String(rd.result); $("prof-avatar-preview").src = me.avatar; };
+      rd.readAsDataURL(f);
     };
+
+    $("prof-avatar-url").oninput = (e) => {
+      if (e.target.value.trim()) { me.avatar = e.target.value.trim(); $("prof-avatar-preview").src = me.avatar; }
+    };
+
     $("profile-form").onsubmit = (e) => {
       e.preventDefault();
+      const age = Number($("prof-age").value);
+      if (!age || age < 18) {
+        $("profile-error").textContent = "גיל חייב להיות 18 ומעלה.";
+        $("profile-error").classList.remove("hidden");
+        return;
+      }
+      $("profile-error").classList.add("hidden");
       me.name = $("prof-name").value.trim() || me.name;
-      me.age = Number($("prof-age").value) || me.age;
+      me.gender = $("prof-gender").value;
+      me.age = age;
       me.city = $("prof-city").value.trim() || me.city;
-      $("user-badge").textContent = `${me.name}, ${me.age} • ${me.city}`;
+      me.bio = $("prof-bio").value.trim();
+      $("user-badge").textContent = `${me.name} • ${me.gender}, ${me.age}`;
       $("save-feedback").classList.remove("opacity-0");
       setTimeout(() => $("save-feedback").classList.add("opacity-0"), 1500);
+    };function hasVipPass() {
+      return Date.now() < vipActiveUntil;
+    }
+
+    function renderRooms() {
+      $("rooms-list").innerHTML = rooms.map((r) => {
+        const isVip = r.type === "vip";
+        const isAct = r.id === activeRoomId;
+        return `<button type="button" onclick="selectRoom('${r.id}')" class="w-full text-right p-3 rounded-xl border text-xs transition ${isAct ? "bg-pink-600/30 border-pink-400" : "bg-slate-950/70 border-slate-800"}">
+          <div class="font-bold text-sm">${isVip ? "👑 " : "💬 "}${r.topic}</div>
+          <div class="mt-0.5 ${isVip ? "text-amber-300" : "text-emerald-300"}">${isVip ? "VIP • 5 ש\"ח ליום" : "חינם"}</div>
+        </button>`;
+      }).join("");
+
+      const cur = rooms.find((r) => r.id === activeRoomId) || rooms[0];
+      activeRoomId = cur.id;
+      const lockedVip = cur.type === "vip" && !hasVipPass();
+      $("active-room-title").textContent = cur.topic;
+      $("active-room-meta").textContent = cur.type === "vip"
+        ? (hasVipPass() ? "חדר VIP פעיל (שולם 5 ש\"ח ליום)" : "חדר VIP נעול — תשלום 5 ש\"ח ליום")
+        : "חדר נושא רגיל — חינם";
+      $("unlock-vip-btn").classList.toggle("hidden", !(cur.type === "vip" && !hasVipPass()));
+
+      $("chat-messages").innerHTML = lockedVip
+        ? `<p class="text-xs text-amber-300">חדר VIP עולה 5 ש"ח ליום. לחץ על "שלם 5 ש"ח ליום עבור VIP" לפתיחה.</p>`
+        : (cur.msgs.length
+            ? cur.msgs.map((m) => `<div class="bg-slate-800 px-3 py-2 rounded-xl text-sm"><strong class="text-pink-300">${m.from}:</strong> ${m.text}</div>`).join("")
+            : `<p class="text-xs text-slate-400">אין עדיין הודעות בנושא "${cur.topic}".</p>`);
+    }
+
+    window.selectRoom = (id) => { activeRoomId = id; renderRooms(); };
+
+    $("unlock-vip-btn").onclick = () => {
+      vipActiveUntil = Date.now() + 24 * 60 * 60 * 1000;
+      renderRooms();
     };
 
-    function renderChat() {
-      $("chat-room-label").textContent = `חדר פעיל: ${currentRoom}`;
-      const list = chatRooms[currentRoom];
-      $("chat-messages").innerHTML = list.length
-        ? list.map((m) => `<div class="bg-slate-800 px-3 py-2 rounded-xl text-sm"><strong class="text-pink-300">${m.from}:</strong> ${m.text}</div>`).join("")
-        : `<p class="text-xs text-slate-400">אין עדיין הודעות בחדר ${currentRoom}.</p>`;
-    }
-    document.querySelectorAll(".room-btn").forEach((b) => {
-      b.onclick = () => { currentRoom = b.dataset.room; renderChat(); };
-    });
+    $("create-room-form").onsubmit = (e) => {
+      e.preventDefault();
+      const topic = $("new-room-topic").value.trim();
+      const type = $("new-room-type").value;
+      if (!topic) return;
+      const newRoom = { id: `r-${Date.now()}`, topic, type, msgs: [] };
+      rooms.unshift(newRoom);
+      activeRoomId = newRoom.id;
+      $("new-room-topic").value = "";
+      renderRooms();
+    };
+
     $("chat-form").onsubmit = (e) => {
       e.preventDefault();
-      const t = $("chat-input").value.trim();
-      if (!t) return;
-      chatRooms[currentRoom].push({ from: me.name, text: t });
+      const cur = rooms.find((r) => r.id === activeRoomId);
+      if (!cur || (cur.type === "vip" && !hasVipPass())) return;
+      const txt = $("chat-input").value.trim();
+      if (!txt) return;
+      cur.msgs.push({ from: me.name, text: txt });
       $("chat-input").value = "";
-      renderChat();
+      renderRooms();
     };
 
-    // סנכרון תור: מחכים לפרופיל השני (player2) אחרי ש-player1 לחץ, ולא משחקים מול עצמנו
-    const matchSync = {
-      activeProfile: "player1",
-      waitingFor: "player1",
-      rpsMoves: { player1: null, player2: null }
-    };
-
-    function refreshTurnBanner() {
-      const targetName = matchSync.waitingFor === "player1" ? "שחקן 1" : "שחקן 2";
-      $("sync-turn-banner").textContent = `ממתין ללחיצת ${targetName}...`;
+    const mp = { active: "p1", waiting: "p1", rps: { p1: null, p2: null } };
+    function updateMpBanner() {
+      const who = mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'";
+      $("multiplayer-status").textContent = `ממתין לפעולה של ${who} (אסור לשחק לבד)`;
     }
-
-    $("active-player-select").onchange = (e) => {
-      matchSync.activeProfile = e.target.value;
-      refreshTurnBanner();
-    };
-    refreshTurnBanner();document.querySelectorAll(".game-tab-btn").forEach((btn) => {
+    $("game-profile-select").onchange = (e) => { mp.active = e.target.value; updateMpBanner(); };
+    updateMpBanner();document.querySelectorAll(".game-tab-btn").forEach((btn) => {
       btn.onclick = () => {
         document.querySelectorAll(".game-tab-btn").forEach((b) => { b.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold glass text-slate-300"; });
         btn.className = "game-tab-btn px-3 py-2 rounded-xl text-xs font-semibold bg-pink-600";
@@ -354,32 +440,35 @@
       };
     });
 
-    const rpsNames = { rock: "🪨 אבן", paper: "📄 נייר", scissors: "✂️ מספריים" };
+    const rpsMap = { rock: "🪨 אבן", paper: "📄 נייר", scissors: "✂️ מספריים" };
     document.querySelectorAll(".rps-choice").forEach((b) => {
       b.onclick = () => {
-        const p = matchSync.activeProfile;
-        if (matchSync.waitingFor !== p) {
-          $("rps-result").textContent = `עכשיו תור ${matchSync.waitingFor === "player1" ? "שחקן 1" : "שחקן 2"} ללחוץ!`;
+        if (mp.active !== mp.waiting) {
+          $("rps-result").textContent = `עכשיו מחכים ל${mp.waiting === "p1" ? "פרופיל א'" : "פרופיל ב'"} שילחץ!`;
           return;
         }
-        matchSync.rpsMoves[p] = b.dataset.rps;
-        if (!matchSync.rpsMoves.player1 || !matchSync.rpsMoves.player2) {
-          matchSync.waitingFor = p === "player1" ? "player2" : "player1";
-          refreshTurnBanner();
-          $("rps-result").textContent = `${p === "player1" ? "שחקן 1" : "שחקן 2"} בחר! ממתין לשחקן השני שילחץ...`;
+        mp.rps[mp.active] = b.dataset.rps;
+        if (!mp.rps.p1 || !mp.rps.p2) {
+          mp.waiting = mp.active === "p1" ? "p2" : "p1";
+          updateMpBanner();
+          $("rps-result").textContent = "הבחירה נשמרה! ממתין לפרופיל השני שילחץ...";
           return;
         }
-        const m1 = matchSync.rpsMoves.player1;
-        const m2 = matchSync.rpsMoves.player2;
-        $("rps-result").textContent = `שחקן 1: ${rpsNames[m1]} | שחקן 2: ${rpsNames[m2]}`;
-        matchSync.rpsMoves = { player1: null, player2: null };
-        matchSync.waitingFor = "player1";
-        refreshTurnBanner();
+        $("rps-result").textContent = `פרופיל א': ${rpsMap[mp.rps.p1]} | פרופיל ב': ${rpsMap[mp.rps.p2]}`;
+        mp.rps = { p1: null, p2: null }; mp.waiting = "p1"; updateMpBanner();
       };
     });
 
-    $("btn-truth").onclick = () => { $("tod-text").textContent = "💭 אמת: מה הרגע הכי מצחיק שקרה לך לאחרונה?"; };
-    $("btn-dare").onclick = () => { $("tod-text").textContent = "⚡ חובה: שלח הודעה טובה בצ'אט לחדר!"; };
+    $("btn-truth").onclick = () => {
+      if (mp.active !== mp.waiting) { $("tod-text").textContent = "ממתין לשחקן השני בתור..."; return; }
+      $("tod-text").textContent = "💭 אמת: מה הנושא שהכי מעניין אותך לשיחה?";
+      mp.waiting = mp.waiting === "p1" ? "p2" : "p1"; updateMpBanner();
+    };
+    $("btn-dare").onclick = () => {
+      if (mp.active !== mp.waiting) { $("tod-text").textContent = "ממתין לשחקן השני בתור..."; return; }
+      $("tod-text").textContent = "⚡ חובה: פתח חדר שיחה חדש בנושא שמעניין אותך!";
+      mp.waiting = mp.waiting === "p1" ? "p2" : "p1"; updateMpBanner();
+    };
 
     let bgBoard = Array(24).fill(null).map(() => ({ c: null, n: 0 })), bgSel = null;
     function initBg() {
@@ -411,8 +500,7 @@
       return btn;
     }
     $("bg-roll").onclick = () => { $("bg-dice").textContent = `${Math.floor(Math.random()*6)+1} ו-${Math.floor(Math.random()*6)+1}`; };
-    $("bg-reset").onclick = initBg;
-    initBg();
+    $("bg-reset").onclick = initBg; initBg();
 
     const startChess = [["♜","♞","♝","♛","♚","♝","♞","♜"],["♟","♟","♟","♟","♟","♟","♟","♟"],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["♙","♙","♙","♙","♙","♙","♙","♙"],["♖","♘","♗","♕","♔","♗","♘","♖"]];
     let cb = startChess.map((r) => [...r]), cs = null, whiteTurn = true;
@@ -427,8 +515,7 @@
           if (cs) {
             if (cs.r !== r || cs.c !== c) {
               cb[r][c] = cb[cs.r][cs.c]; cb[cs.r][cs.c] = "";
-              whiteTurn = !whiteTurn;
-              $("chess-turn").textContent = `תור: ${whiteTurn ? "לבן" : "שחור"}`;
+              whiteTurn = !whiteTurn; $("chess-turn").textContent = `תור: ${whiteTurn ? "לבן" : "שחור"}`;
             }
             cs = null; renderChess();
           } else if (cb[r][c]) { cs = { r, c }; renderChess(); }
@@ -439,11 +526,11 @@
     $("chess-reset").onclick = () => { cb = startChess.map((r) => [...r]); cs = null; whiteTurn = true; $("chess-turn").textContent = "תור: לבן"; renderChess(); };
     renderChess();
 
-    const trList = [{ q: "מה שובר קרח טוב?", opts: ["משחק קליל", "מבחן", "ריב", "שתיקה"], ok: 0 }];
+    const trList = [{ q: "מה שובר קרח טוב?", opts: ["שיחה מעניינת", "מבחן", "ריב", "שתיקה"], ok: 0 }];
     $("trivia-q").textContent = trList[0].q;
     trList[0].opts.forEach((o, i) => {
       const b = document.createElement("button"); b.type = "button"; b.className = "px-4 py-2 rounded-xl bg-slate-800 text-sm"; b.textContent = o;
-      b.onclick = () => { $("trivia-feedback").textContent = i === trList[0].ok ? "תשובה מעולה!" : "נסה שוב"; };
+      b.onclick = () => { $("trivia-feedback").textContent = i === trList[0].ok ? "תשובה מצוינת!" : "נסה שוב"; };
       $("trivia-options").appendChild(b);
     });
 
@@ -479,32 +566,16 @@
       $("ttt-board").innerHTML = "";
       ttt.forEach((v, i) => {
         const b = document.createElement("button"); b.type = "button"; b.className = "h-14 rounded-xl bg-slate-800 border border-slate-700 text-xl font-bold"; b.textContent = v;
-        b.onclick = () => {
-          if (!v) {
-            ttt[i] = xTurn ? "❌" : "⭕";
-            xTurn = !xTurn;
-            $("ttt-status").textContent = `תור: ${xTurn ? "❌" : "⭕"}`;
-            renderTtt();
-          }
-        };
+        b.onclick = () => { if (!v) { ttt[i] = xTurn ? "❌" : "⭕"; xTurn = !xTurn; $("ttt-status").textContent = `תור: ${xTurn ? "❌" : "⭕"}`; renderTtt(); } };
         $("ttt-board").appendChild(b);
       });
     }
     $("ttt-reset").onclick = () => { ttt = Array(9).fill(""); xTurn = true; $("ttt-status").textContent = "תור: ❌"; renderTtt(); }; renderTtt();
 
-    $("rom-submit").onclick = () => {
-      const v = $("rom-input").value.trim();
-      if (v) { $("rom-feedback").textContent = `נשמר: "${v}"`; $("rom-input").value = ""; }
-    };
+    $("rom-submit").onclick = () => { const v = $("rom-input").value.trim(); if (v) { $("rom-feedback").textContent = `נשמר: "${v}"`; $("rom-input").value = ""; } };
 
     let taps = 0;
-    $("tap-btn").onclick = () => {
-      taps++;
-      $("tap-counter").textContent = `לחיצות: ${taps}${taps >= 20 ? " — יעד הושג! 🎉" : ""}`;
-    };
-  </script>
-</body>
-</html>};
+    $("tap-btn").onclick = () => { taps++; $("tap-counter").textContent = `לחיצות: ${taps}${taps >= 20 ? " — יעד הושג! 🎉" : ""}`; };
   </script>
 </body>
 </html>
